@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Han's Ribbon Bouquet | Floral Artistry</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4C+B9p7a+E/7tWv8lX/LpT1qFq9xH+eD5u3vA5/V8XgUaN3vU6e8+4z8G0tQG2Q3lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Set Inter font as default */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
+        
+        /* 1. Set Logo as Fixed Background for the entire page */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: url('/home/hanania/Downloads/Telegram Desktop/photo_2025-10-28_21-45-05.jpg');
+            background-size: cover;
+            background-attachment: fixed; */
+            background-position: center;
+        }
+
+        /* 2. Add White Overlay for Readability */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.75); /* 75% transparent white overlay */
+            z-index: -1;
+        }
+        
+        .brand-slogan {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 500;
+        }
+        /* Style for color swatches in the modal */
+        .color-swatch {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.15s;
+        }
+        .color-swatch.selected {
+            border-color: #e91e63; /* primary-pink */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Updated color palette to match the logo
+                        'primary-pink': '#e91e63', /* A vibrant pink from the logo */
+                        'secondary-pink': '#f8bbd0', /* A softer pink for accents */
+                        'text-dark': '#4a148c', /* A deep purple for strong contrast with pink */
+                        'text-light': '#fce4ec', /* Light pink for contrast on dark backgrounds */
+                        'accent-light': '#ffc0cb', /* Even lighter pink for highlights */
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-text-dark antialiased">
+
+    <!-- Navigation --><header class="sticky top-0 z-50 bg-white shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <!-- Logo and Name --><a href="#" class="flex items-center space-x-3">
+                <img src="images/photo_2025-10-28_21-45-05.jpg alt="Han's Ribbon Bouquet Logo" class="h-10 w-10 object-cover rounded-full shadow-md"
+    onerror="this.onerror=null;this.src='https://placehold.co/40x40/f8bbd0/4a148c?text=Logo';"
+>
+
+                <div>
+                    <span class="text-2xl font-extrabold text-primary-pink tracking-tight">Han's Ribbon Bouquet</span>
+                    <p class="text-sm text-text-dark brand-slogan mt-0.5">floral artistry for every occasion</p>
+                </div>
+            </a>
+
+            <!-- Desktop Menu --><div class="hidden md:flex space-x-8 items-center">
+                <a href="#featured" class="text-text-dark hover:text-primary-pink transition duration-150">Shop</a>
+                <a href="#gallery" class="text-text-dark hover:text-primary-pink transition duration-150">Gallery</a>
+                <a href="#advisor" class="text-text-dark hover:text-primary-pink transition duration-150">AI Advisor</a>
+                <a href="#about" class="text-text-dark hover:text-primary-pink transition duration-150">Our Story</a>
+                <a href="#contact" class="text-text-dark hover:text-primary-pink transition duration-150">Contact</a>
+                <button id="open-design-modal" class="bg-secondary-pink text-text-dark px-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 shadow-md flex items-center">
+                    <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
+                </button>
+                <button class="bg-primary-pink text-white px-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 shadow-md flex items-center">
+                    <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-primary-pink hover:bg-pink-50 transition duration-150">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Drawer (Hidden by default) --><div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white shadow-xl py-4 transition-all duration-300">
+            <div class="flex flex-col space-y-3 px-4">
+                <a href="#featured" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Shop</a>
+                <a href="#gallery" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Gallery</a>
+                <a href="#advisor" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">AI Advisor</a>
+                <a href="#about" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Our Story</a>
+                <a href="#contact" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+                <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center">
+                    <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
+                </button>
+                <button class="w-full bg-primary-pink text-white mt-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 flex items-center justify-center">
+                    <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <!-- Note: This section now sits over the body background -->
+        <section class="min-h-[50vh] flex items-center justify-center text-center px-4 rounded-b-xl overflow-hidden mb-12 bg-white/70 shadow-xl border-b border-primary-pink">
+            <div class="p-8 md:p-12 rounded-2xl max-w-lg mx-auto">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-primary-pink">
+                    Exquisite Floral Artistry
+                </h1>
+                <p class="text-lg text-text-dark mb-6">
+                    Hand-tied bouquets, crafted with passion and elegance.
+                </p>
+                <a href="#featured" class="inline-block bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg transform hover:scale-105">
+                    Explore Our Collection
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Products Section (Explore Collection) --><section id="featured" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white/90 rounded-xl shadow-2xl mb-12">
+            <h2 class="text-3xl font-bold text-center mb-10 text-primary-pink">Our Signature Bouquets</h2>
+            
+            <!-- Occasion Filters -->
+            <div class="flex flex-wrap justify-center space-x-3 mb-10">
+                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Occasions</button>
+                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="birthday">Birthday</button>
+                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="anniversary">Anniversary</button>
+                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="table">Table Centerpiece</button>
+                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="gift">General Gift</button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 product-list">
+                <!-- Product Card 1 -->
+                <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="birthday,anniversary,gift">
+                    <img src="https://placehold.co/400x400/f8bbd0/4a148c?text=Elegant+Rose+Mix" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f8bbd0/4a148c?text=Elegant+Rose+Mix';" alt="Elegant Rose Bouquet" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2">Blushing Romance</h3>
+                        <p class="text-gray-600 mb-4">A delicate mix of pink and white roses.</p>
+                        <p class="text-2xl font-bold text-primary-pink mb-4">$70.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                            Add to Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="table,gift">
+                    <img src="https://placehold.co/400x400/ffe0f0/6d28d9?text=Pastel+Delights" onerror="this.onerror=null;this.src='https://placehold.co/400x400/ffe0f0/6d28d9?text=Pastel+Delights';" alt="Pastel Delights Bouquet" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2">Sweet Serenity</h3>
+                        <p class="text-gray-600 mb-4">Pastel carnations, hydrangeas, and delicate greenery.</p>
+                        <p class="text-2xl font-bold text-primary-pink mb-4">$55.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                            Add to Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="anniversary,birthday">
+                    <img src="https://placehold.co/400x400/f7e1ff/7b2cbf?text=Purple+Elegance" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f7e1ff/7b2cbf?text=Purple+Elegance';" alt="Purple Elegance Bouquet" class="w-full h-64 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-2">Velvet Harmony</h3>
+                        <p class="text-gray-600 mb-4">Deep purple tulips, pink peonies, and subtle accents.</p>
+                        <p class="text-2xl font-bold text-primary-pink mb-4">$80.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                            Add to Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#gallery" class="inline-block border-2 border-primary-pink text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-primary-pink hover:text-white transition duration-300">
+                    View All Products
+                </a>
+            </div>
+        </section>
+
+        <!-- Previous Work Gallery Section (Exploring flowers made previously) --><section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white/90 rounded-xl shadow-2xl my-12">
+            <h2 class="text-3xl font-bold text-center mb-10 text-primary-pink">Our Previous Work Gallery</h2>
+            <p class="text-center text-lg text-gray-700 mb-10">Find inspiration for your custom order by browsing our past creations.</p>
+
+            <!-- Gallery Filters -->
+            <div class="flex flex-wrap justify-center space-x-3 mb-10">
+                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Styles</button>
+                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="wedding">Wedding</button>
+                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="corporate">Corporate</button>
+                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="custom">Fully Custom</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 gallery-grid">
+                <img src="https://placehold.co/400x400/f8bbd0/4a148c?text=Past+Design+1" alt="Past Design 1" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="wedding">
+                <img src="https://placehold.co/400x400/ffe0f0/6d28d9?text=Past+Design+2" alt="Past Design 2" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="corporate">
+                <img src="https://placehold.co/400x400/f7e1ff/7b2cbf?text=Past+Design+3" alt="Past Design 3" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="custom">
+                <img src="https://placehold.co/400x400/ffc0cb/e91e63?text=Past+Design+4" alt="Past Design 4" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="wedding,custom">
+                <img src="https://placehold.co/400x400/a020f0/ffc0cb?text=Past+Design+5" alt="Past Design 5" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="corporate">
+                <img src="https://placehold.co/400x400/ffe4e6/4a148c?text=Past+Design+6" alt="Past Design 6" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="custom">
+                <img src="https://placehold.co/400x400/fce7f7/e91e63?text=Past+Design+7" alt="Past Design 7" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="wedding">
+                <img src="https://placehold.co/400x400/f8bbd0/6d28d9?text=Past+Design+8" alt="Past Design 8" class="w-full h-48 object-cover rounded-lg shadow-lg gallery-item" data-styles="corporate,custom">
+            </div>
+
+            <div class="text-center mt-12">
+                <button id="open-design-modal-gallery" class="inline-block bg-primary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105">
+                    Start Your Custom Design
+                </button>
+            </div>
+        </section>
+
+        <!-- About Us Section --><section id="about" class="bg-white/90 py-16 shadow-2xl rounded-xl mx-auto max-w-7xl my-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://placehold.co/600x400/fce4ec/a020f0?text=Our+Floral+Workshop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/fce4ec/a020f0?text=Our+Floral+Workshop';" alt="Florist working in studio" class="w-full h-auto rounded-xl shadow-2xl">
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold text-primary-pink mb-4">Our Story: Crafted with Love</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        At Han's Ribbon Bouquet, we believe flowers are more than just gifts—they are expressions of emotion, artfully arranged to convey your deepest sentiments. Each bouquet is meticulously handcrafted, blending tradition with modern aesthetics, ensuring a unique and memorable piece of floral artistry for every occasion.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed font-semibold">
+                        We are dedicated to sourcing the freshest, most beautiful blooms, creating designs that truly resonate with our customers.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bouquet Advisor Section (Gemini Integration) --><section id="advisor" class="bg-white/90 py-20 rounded-xl shadow-2xl mx-auto max-w-7xl my-12">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold text-center mb-4 text-primary-pink flex items-center justify-center">
+                    <span class="mr-3 text-4xl">✨</span> Your AI Bouquet Advisor
+                </h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                    Unsure what to send? Tell our AI the **occasion, recipient, or emotion** you want to convey, and we'll suggest the perfect arrangement and message, grounded by real-time web search.
+                </p>
+
+                <div class="bg-white p-6 rounded-xl shadow-inner border border-pink-100">
+                    <textarea id="advisor-prompt" rows="3" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-primary-pink focus:border-primary-pink resize-none mb-4 text-gray-700" placeholder="e.g., 'A graduation gift for my best friend' or 'Something bright and comforting for a sympathy card'"></textarea>
+                    
+                    <button id="advisor-button" class="w-full md:w-auto bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg flex items-center justify-center mx-auto" onclick="recommendBouquet()">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Get Personalized Suggestion
+                    </button>
+                    <div id="advisor-loading" class="hidden mt-4 text-primary-pink font-medium">
+                        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Generating your perfect bouquet...
+                    </div>
+                </div>
+
+                <!-- Results Display Area --><div id="advisor-results" class="mt-10 p-6 bg-white rounded-xl shadow-2xl border-t-4 border-primary-pink hidden text-left">
+                    <h3 class="text-2xl font-bold text-primary-pink mb-3">Recommendation:</h3>
+                    <div id="recommendation-text" class="text-lg text-text-dark leading-relaxed"></div>
+                    
+                    <div id="recommendation-sources" class="mt-4 pt-4 border-t border-gray-200 text-sm text-gray-500">
+                        <!-- Sources will be injected here --></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section (Delivery Info) --><section class="py-12 bg-primary-pink text-white text-center">
+            <div class="max-w-4xl mx-auto px-4">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">Local Delivery Available!</h3>
+                <p class="text-lg opacity-90 mb-6">
+                    Order before 2 PM for same-day delivery in the metro area. Perfect for those last-minute surprises.
+                </p>
+                <a href="#featured" class="inline-block bg-white text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-pink-100 transition duration-300 shadow-xl transform hover:scale-105">
+                    Order Now
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Design Your Bouquet Modal (Custom Order Page - Handles half payment and customization) -->
+    <div id="design-modal" class="fixed inset-0 bg-text-dark bg-opacity-70 flex items-center justify-center z-[100] hidden p-4">
+        <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h2 class="text-3xl font-extrabold text-primary-pink">Design Your Custom Bouquet</h2>
+                    <button id="close-design-modal" class="text-text-dark hover:text-primary-pink text-2xl">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Step 1: Flower Details -->
+                <div class="mb-8 p-4 bg-pink-50 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 text-text-dark">1. Choose Base Details</h3>
+                    
+                    <!-- Color Selection -->
+                    <label class="block text-gray-700 font-medium mb-2">Flower Color Palette:</label>
+                    <div id="color-selection" class="flex space-x-4 mb-4">
+                        <div class="color-swatch bg-red-400" data-color="Red"></div>
+                        <div class="color-swatch bg-pink-400 selected" data-color="Pink"></div>
+                        <div class="color-swatch bg-yellow-400" data-color="Yellow"></div>
+                        <div class="color-swatch bg-blue-400" data-color="Blue"></div>
+                        <div class="color-swatch bg-white ring-1 ring-gray-300" data-color="White"></div>
+                    </div>
+
+                    <!-- Quantity Input -->
+                    <label for="flower-quantity" class="block text-gray-700 font-medium mb-2">Total Number of Flowers (approx):</label>
+                    <input type="number" id="flower-quantity" value="20" min="5" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink mb-4">
+
+                    <!-- Custom Text/Inspo Input (Supports drag-and-drop reference via text) -->
+                    <label for="custom-inspo" class="block text-gray-700 font-medium mb-2">Inspiration (Text or Image Link):</label>
+                    <textarea id="custom-inspo" rows="3" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink text-gray-700" placeholder="e.g., 'A cascade of lilies and ferns like the photo I uploaded' or 'I want something bright for a summer wedding.'"></textarea>
+                    <p class="text-xs text-gray-500 mt-1">
+                        **Custom Order:** Describe your inspiration here. For drag-and-drop images, please mention the file name or provide a link for our team to reference.
+                    </p>
+                </div>
+
+                <!-- Step 2: Add-Ons -->
+                <div class="mb-8 p-4 bg-pink-50 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 text-text-dark">2. Choose Add-Ons (+$5.00 each)</h3>
+                    <div id="addons-selection" class="grid grid-cols-2 gap-4">
+                        <label class="flex items-center space-x-3 text-gray-700">
+                            <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
+                            <span><i class="fa-solid fa-feather-pointed mr-2"></i> Decorative Butterfly</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-gray-700">
+                            <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
+                            <span><i class="fa-solid fa-crown mr-2"></i> Mini Crown/Tiara</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-gray-700">
+                            <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
+                            <span><i class="fa-solid fa-scroll mr-2"></i> Custom Text Card</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-gray-700">
+                            <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
+                            <span><i class="fa-solid fa-star mr-2"></i> Glitter Finish</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-gray-700">
+                            <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
+                            <span><i class="fa-solid fa-gem mr-2"></i> Mini Diamonds/Pearls</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 3: Calculation & Half Payment -->
+                <div class="p-4 bg-secondary-pink/50 rounded-xl border border-secondary-pink">
+                    <h3 class="text-xl font-semibold mb-4 text-text-dark">3. Order Summary & Payment</h3>
+                    <div class="space-y-2 mb-4 text-lg">
+                        <div class="flex justify-between">
+                            <span>Estimated Base Price:</span>
+                            <span id="base-price">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Total Add-Ons Cost:</span>
+                            <span id="addons-cost">$0.00</span>
+                        </div>
+                        <div class="flex justify-between font-bold text-2xl pt-2 border-t border-text-dark/20">
+                            <span>Estimated Grand Total:</span>
+                            <span id="grand-total">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Half Payment Requirement -->
+                    <div class="bg-white p-3 rounded-lg border-2 border-primary-pink text-center mt-4 shadow-inner">
+                        <p class="font-bold text-primary-pink">Half Payment Required:</p>
+                        <p id="half-payment" class="text-3xl font-extrabold text-primary-pink mt-1">$0.00</p>
+                        <p class="text-sm text-gray-600 mt-2">To confirm your custom order, we require a non-refundable deposit of **50% of the estimated total**. The remainder is due upon delivery.</p>
+                    </div>
+
+                    <button onclick="alert('Proceeding to Checkout with Half Payment ($' + (parseFloat(document.getElementById('half-payment').innerText.replace('$', '')) || 0).toFixed(2) + ' required).')" class="w-full bg-primary-pink text-white font-bold px-8 py-3 rounded-full mt-6 hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105">
+                        <i class="fa-solid fa-credit-card mr-2"></i> Pay Half Deposit & Submit Order
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer --><footer id="contact" class="bg-text-dark text-text-light py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <!-- Logo/About --><div>
+                <h4 class="text-xl font-bold mb-4 text-primary-pink">Han's Ribbon Bouquet</h4>
+                <p class="text-sm">Bringing fresh, beautiful flowers to your door since 2023. Locally owned and operated.</p>
+            </div>
+
+            <!-- Quick Links --><div>
+                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#featured" class="hover:text-primary-pink transition duration-150">Shop All</a></li>
+                    <li><a href="#gallery" class="hover:text-primary-pink transition duration-150">Gallery</a></li>
+                    <li><a href="#advisor" class="hover:text-primary-pink transition duration-150">AI Advisor</a></li>
+                    <li><a href="#about" class="hover:text-primary-pink transition duration-150">Our Mission</a></li>
+                    <li><a href="#" class="hover:text-primary-pink transition duration-150">FAQs</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact --><div>
+                <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
+                <p class="text-sm">Email: <a href="mailto:hello@hansribbonbouquet.com" class="hover:text-primary-pink">hello@hansribbonbouquet.com</a></p>
+                <p class="text-sm">Phone: (555) BOUQUET</p>
+                <p class="text-sm mt-2">123 Floral Lane, Anytown, USA</p>
+            </div>
+
+            <!-- Social Media --><div>
+                <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                <div class="flex space-x-4 text-xl">
+                    <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+            &copy; 2025 Han's Ribbon Bouquet. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+
+            // --- Custom Design Modal Logic ---
+            const designModal = document.getElementById('design-modal');
+            const openModalBtns = document.querySelectorAll('#open-design-modal, #open-design-modal-mobile, #open-design-modal-gallery');
+            const closeModalBtn = document.getElementById('close-design-modal');
+            const quantityInput = document.getElementById('flower-quantity');
+            const addonsCheckboxes = document.querySelectorAll('#addons-selection input[type="checkbox"]');
+            const colorSwatches = document.querySelectorAll('.color-swatch');
+
+            const BASE_PRICE_PER_FLOWER = 3.00; // Simplified base price for calculation
+
+            const updatePrice = () => {
+                const quantity = parseInt(quantityInput.value) || 0;
+                let addonsCost = 0;
+                
+                addonsCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        addonsCost += parseFloat(checkbox.getAttribute('data-price')) || 0;
+                    }
+                });
+
+                const basePrice = quantity * BASE_PRICE_PER_FLOWER;
+                const grandTotal = basePrice + addonsCost;
+                const halfPayment = grandTotal / 2;
+
+                document.getElementById('base-price').innerText = `$${basePrice.toFixed(2)}`;
+                document.getElementById('addons-cost').innerText = `$${addonsCost.toFixed(2)}`;
+                document.getElementById('grand-total').innerText = `$${grandTotal.toFixed(2)}`;
+                document.getElementById('half-payment').innerText = `$${halfPayment.toFixed(2)}`;
+            };
+
+            // Event Listeners for price calculation
+            quantityInput.addEventListener('input', updatePrice);
+            addonsCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updatePrice));
+            
+            // Initialize price calculation on load
+            updatePrice();
+
+            // Color Swatch Selection Logic
+            colorSwatches.forEach(swatch => {
+                swatch.addEventListener('click', () => {
+                    colorSwatches.forEach(s => s.classList.remove('selected'));
+                    swatch.classList.add('selected');
+                    // In a real app, you would update a visual flower preview here.
+                    // console.log('Selected Color:', swatch.getAttribute('data-color'));
+                });
+            });
+
+
+            // Modal Open/Close handlers
+            openModalBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    designModal.classList.remove('hidden');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                         mobileMenu.classList.add('hidden'); // Close mobile menu if open
+                    }
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                designModal.classList.add('hidden');
+            });
+            
+            // Close modal when clicking outside
+            designModal.addEventListener('click', (e) => {
+                if (e.target === designModal) {
+                    designModal.classList.add('hidden');
+                }
+            });
+
+            // --- Occasion Filtering Logic (Shop) ---
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button styling
+                    filterButtons.forEach(btn => {
+                         btn.classList.remove('bg-primary-pink', 'text-white');
+                         btn.classList.add('text-text-dark', 'border', 'border-secondary-pink');
+                    });
+                    button.classList.add('bg-primary-pink', 'text-white');
+                    button.classList.remove('text-text-dark', 'border', 'border-secondary-pink');
+
+
+                    productCards.forEach(card => {
+                        const occasions = card.getAttribute('data-occasions').split(',');
+                        if (filter === 'all' || occasions.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+            
+            // --- Gallery Filtering Logic (Previous Work) ---
+            const galleryFilterButtons = document.querySelectorAll('.gallery-filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryFilterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+
+                    // Update active button styling
+                    galleryFilterButtons.forEach(btn => {
+                         btn.classList.remove('bg-primary-pink', 'text-white');
+                         btn.classList.add('text-text-dark', 'border', 'border-secondary-pink');
+                    });
+                    button.classList.add('bg-primary-pink', 'text-white');
+                    button.classList.remove('text-text-dark', 'border', 'border-secondary-pink');
+
+                    galleryItems.forEach(item => {
+                        const styles = item.getAttribute('data-styles').split(',');
+                        if (filter === 'all' || styles.includes(filter)) {
+                            item.classList.remove('hidden');
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+
+        });
+
+        // --- Gemini API Integration for Bouquet Advisor ---
+
+        const API_MODEL = 'gemini-2.5-flash-preview-09-2025';
+        // The key is provided by the canvas environment automatically if left empty.
+        const API_KEY = ""; 
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${API_MODEL}:generateContent?key=${API_KEY}`;
+        
+        // Elements
+        const promptInput = document.getElementById('advisor-prompt');
+        const advisorButton = document.getElementById('advisor-button');
+        const loadingIndicator = document.getElementById('advisor-loading');
+        const resultsContainer = document.getElementById('advisor-results');
+        const recommendationText = document.getElementById('recommendation-text');
+        const recommendationSources = document.getElementById('recommendation-sources');
+
+        /**
+         * Helper function to implement exponential backoff for API calls.
+         */
+        async function fetchWithBackoff(url, options, maxRetries = 5) {
+            let delay = 1000;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (response.status === 429) {
+                        throw new Error('Rate limit exceeded');
+                    }
+                    if (!response.ok) {
+                        const errorBody = await response.text();
+                        console.error('API Error Response:', errorBody);
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+                    return response;
+                } catch (error) {
+                    console.warn(`Request failed (attempt ${i + 1}/${maxRetries}). Retrying in ${delay / 1000}s.`, error.message);
+                    if (i === maxRetries - 1) throw error; // Re-throw on last attempt
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // Exponential increase
+                }
+            }
+        }
+
+        /**
+         * Generates a flower recommendation using the Gemini API.
+         */
+        async function fetchGeminiRecommendation(userPrompt) {
+            
+            const systemInstruction = `
+                You are a world-class artisan florist and a helpful assistant for Han's Ribbon Bouquet shop. 
+                Your task is to recommend a perfect flower bouquet and suggest a brief, thoughtful card message based on the user's input (occasion, recipient, or sentiment).
+                Your response must be structured clearly, addressing both the arrangement and the message. Use search grounding to ensure your recommendations are culturally appropriate, consider flower meanings, and reflect current trends or availability.
+                
+                Format your response with the sections bolded and separated by a line break:
+                **Recommended Arrangement:** [Name and description of the bouquet, including 3-4 specific flowers and their colors/meaning.]
+                **Suggested Card Message:** [A brief, heartfelt message (1-2 sentences) for the recipient.]
+            `;
+
+            const payload = {
+                contents: [{ 
+                    parts: [{ text: userPrompt }] 
+                }],
+                tools: [{ "google_search": {} }],
+                systemInstruction: {
+                    parts: [{ text: systemInstruction }]
+                },
+            };
+
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            };
+
+            try {
+                const response = await fetchWithBackoff(API_URL, options);
+                const result = await response.json();
+                
+                const candidate = result.candidates?.[0];
+
+                if (!candidate || !candidate.content?.parts?.[0]?.text) {
+                     // Throw an error if the model returned nothing useful
+                     throw new Error("Received an empty or malformed response from the model.");
+                }
+
+                const text = candidate.content.parts[0].text;
+                let sources = [];
+                const groundingMetadata = candidate.groundingMetadata;
+
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    sources = groundingMetadata.groundingAttributions
+                        .map(attribution => ({
+                            uri: attribution.web?.uri,
+                            title: attribution.web?.title,
+                        }))
+                        .filter(source => source.uri && source.title);
+                }
+                
+                return { text, sources };
+
+            } catch (error) {
+                console.error("Gemini API Request Failed:", error);
+                // Return a user-friendly error message
+                return { text: "I apologize, but I couldn't generate a personalized recommendation right now. Please try again later or contact our support.", sources: [] };
+            }
+        }
+
+        /**
+         * Main handler for the Bouquet Advisor button click.
+         */
+        async function recommendBouquet() {
+            const prompt = promptInput.value.trim();
+            if (prompt.length < 5) {
+                // Display error message to user
+                recommendationText.innerHTML = '<p class="text-red-500 font-semibold">Please enter a few more details about the occasion!</p>';
+                resultsContainer.classList.remove('hidden');
+                recommendationSources.innerHTML = '';
+                return;
+            }
+
+            // Show loading state
+            advisorButton.disabled = true;
+            loadingIndicator.classList.remove('hidden');
+            resultsContainer.classList.add('hidden');
+            recommendationText.innerHTML = '';
+            recommendationSources.innerHTML = '';
+
+            const { text, sources } = await fetchGeminiRecommendation(prompt);
+
+            // Hide loading state and show results
+            advisorButton.disabled = false;
+            loadingIndicator.classList.add('hidden');
+            
+            // Display the recommendation text
+            // Simple markdown conversion for bolding and newlines
+            recommendationText.innerHTML = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            
+            resultsContainer.classList.remove('hidden');
+
+            // Display sources if available
+            if (sources.length > 0) {
+                let sourcesHtml = '<strong>Sources:</strong> ';
+                sources.forEach((source, index) => {
+                    sourcesHtml += `<a href="${source.uri}" target="_blank" class="text-primary-pink hover:text-rose-700 underline">${source.title}</a>${index < sources.length - 1 ? ', ' : ''}`;
+                });
+                recommendationSources.innerHTML = sourcesHtml;
+            } else {
+                 recommendationSources.innerHTML = 'No external search sources were cited for this recommendation.';
+            }
+        }
+    </script>
+</body>
+</html>
