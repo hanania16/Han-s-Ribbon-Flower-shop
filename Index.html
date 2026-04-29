@@ -26,7 +26,7 @@
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="text-text-dark antialiased">
+    <body class="text-base md:text-lg text-text-dark antialiased">
 
     <!-- Navigation --><header class="sticky top-0 z-50 bg-white shadow-lg">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
@@ -36,7 +36,7 @@
 >
 
                 <div>
-                    <span class="text-2xl font-extrabold text-primary-pink tracking-tight">Han's Ribbon Bouquet</span>
+                     <span class="text-xl md:text-2xl font-extrabold text-primary-pink tracking-tight">Han's Ribbon Bouquet</span>
                     <!-- <p class="text-sm text-text-dark brand-slogan mt-0.5">floral artistry for every occasion</p> -->
                 </div>
             </a>
@@ -47,10 +47,10 @@
                 <a href="#advisor" class="text-text-dark hover:text-primary-pink transition duration-150">AI Advisor</a>
                 <a href="#about" class="text-text-dark hover:text-primary-pink transition duration-150">About Us</a>
                 <a href="#contact" class="text-text-dark hover:text-primary-pink transition duration-150">Contact</a>
-                <button id="open-design-modal" class="bg-secondary-pink text-text-dark px-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 shadow-md flex items-center">
+                <button id="open-design-modal" class="bg-secondary-pink text-text-dark px-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 shadow-md flex items-center text-sm md:text-base">
                     <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
                 </button>
-                <button class="bg-primary-pink text-white px-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 shadow-md flex items-center">
+                <button class="bg-primary-pink text-white px-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 shadow-md flex items-center text-sm md:text-base">
                     <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
                 </button>
             </div>
@@ -71,10 +71,10 @@
                 <a href="#advisor" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">AI Advisor</a>
                 <a href="#about" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
                 <a href="#contact" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
-                <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center">
+                <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
                     <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
                 </button>
-                <button class="w-full bg-primary-pink text-white mt-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 flex items-center justify-center">
+                <button class="w-full bg-primary-pink text-white mt-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 flex items-center justify-center text-sm md:text-base">
                     <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
                 </button>
             </div>
@@ -89,25 +89,25 @@
                 <h1 class="text-4xl sm:text-5xl font-extrabold mb-4 text-primary-pink">
                     Exquisite Floral Artistry
                 </h1>
-                <p class="text-lg text-text-dark mb-6">
+                 <p class="text-base md:text-lg text-text-dark mb-6">
                     Hand-tied bouquets, crafted with passion and elegance.
                 </p>
-                <a href="#featured" class="inline-block bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg transform hover:scale-105">
+                 <a href="#featured" class="inline-block bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg transform hover:scale-105 text-sm md:text-base">
                     Explore Our Collection
                 </a>
             </div>
         </section>
 
         <!-- Featured Products Section (Explore Collection) --><section id="featured" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white/90 rounded-xl shadow-2xl mb-12">
-            <h2 class="text-3xl font-bold text-center mb-10 text-primary-pink">Our Signature Bouquets</h2>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-primary-pink">Our Signature Bouquets</h2>
             
             <!-- Occasion Filters -->
             <div class="flex flex-wrap justify-center space-x-3 mb-10">
-                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Occasions</button>
-                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="birthday">Birthday</button>
-                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="anniversary">Anniversary</button>
-                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="table">Table Centerpiece</button>
-                <button class="filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="gift">General Gift</button>
+                <button class="filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Occasions</button>
+                <button class="filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="birthday">Birthday</button>
+                <button class="filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="anniversary">Anniversary</button>
+                <button class="filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="table">Table Centerpiece</button>
+                <button class="filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="gift">General Gift</button>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 product-list">
@@ -115,10 +115,10 @@
                 <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="birthday,anniversary,gift">
                     <img src="https://placehold.co/400x400/f8bbd0/4a148c?text=Elegant+Rose+Mix" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f8bbd0/4a148c?text=Elegant+Rose+Mix';" alt="Elegant Rose Bouquet" class="w-full h-64 object-cover">
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Blushing Romance</h3>
-                        <p class="text-gray-600 mb-4">A delicate mix of pink and white roses.</p>
-                        <p class="text-2xl font-bold text-primary-pink mb-4">$70.00</p>
-                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                         <h3 class="text-lg md:text-xl font-semibold mb-2">Blushing Romance</h3>
+                         <p class="text-gray-600 text-sm md:text-base mb-4">A delicate mix of pink and white roses.</p>
+                         <p class="text-xl md:text-2xl font-bold text-primary-pink mb-4">$70.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150 text-sm md:text-base">
                             Add to Order
                         </button>
                     </div>
@@ -128,10 +128,10 @@
                 <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="table,gift">
                     <img src="https://placehold.co/400x400/ffe0f0/6d28d9?text=Pastel+Delights" onerror="this.onerror=null;this.src='https://placehold.co/400x400/ffe0f0/6d28d9?text=Pastel+Delights';" alt="Pastel Delights Bouquet" class="w-full h-64 object-cover">
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Sweet Serenity</h3>
-                        <p class="text-gray-600 mb-4">Pastel carnations, hydrangeas, and delicate greenery.</p>
-                        <p class="text-2xl font-bold text-primary-pink mb-4">$55.00</p>
-                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                         <h3 class="text-lg md:text-xl font-semibold mb-2">Sweet Serenity</h3>
+                         <p class="text-gray-600 text-sm md:text-base mb-4">Pastel carnations, hydrangeas, and delicate greenery.</p>
+                         <p class="text-xl md:text-2xl font-bold text-primary-pink mb-4">$55.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150 text-sm md:text-base">
                             Add to Order
                         </button>
                     </div>
@@ -141,32 +141,32 @@
                 <div class="product-card bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition duration-300 border border-secondary-pink" data-occasions="anniversary,birthday">
                     <img src="https://placehold.co/400x400/f7e1ff/7b2cbf?text=Purple+Elegance" onerror="this.onerror=null;this.src='https://placehold.co/400x400/f7e1ff/7b2cbf?text=Purple+Elegance';" alt="Purple Elegance Bouquet" class="w-full h-64 object-cover">
                     <div class="p-6 text-center">
-                        <h3 class="text-xl font-semibold mb-2">Velvet Harmony</h3>
-                        <p class="text-gray-600 mb-4">Deep purple tulips, pink peonies, and subtle accents.</p>
-                        <p class="text-2xl font-bold text-primary-pink mb-4">$80.00</p>
-                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150">
+                         <h3 class="text-lg md:text-xl font-semibold mb-2">Velvet Harmony</h3>
+                         <p class="text-gray-600 text-sm md:text-base mb-4">Deep purple tulips, pink peonies, and subtle accents.</p>
+                         <p class="text-xl md:text-2xl font-bold text-primary-pink mb-4">$80.00</p>
+                        <button class="w-full bg-primary-pink text-white py-2 rounded-full hover:bg-rose-700 transition duration-150 text-sm md:text-base">
                             Add to Order
                         </button>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-12">
-                <a href="#gallery" class="inline-block border-2 border-primary-pink text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-primary-pink hover:text-white transition duration-300">
+                <a href="#gallery" class="inline-block border-2 border-primary-pink text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-primary-pink hover:text-white transition duration-300 text-sm md:text-base">
                     View All Products
                 </a>
             </div>
         </section>
 
         <!-- Previous Work Gallery Section (Exploring flowers made previously) --><section id="gallery" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 bg-white/90 rounded-xl shadow-2xl my-12">
-            <h2 class="text-3xl font-bold text-center mb-10 text-primary-pink">Our Previous Work Gallery</h2>
-            <p class="text-center text-lg text-gray-700 mb-10">Find inspiration for your custom order by browsing our past creations.</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 text-primary-pink">Our Previous Work Gallery</h2>
+            <p class="text-center text-base md:text-lg text-gray-700 mb-10">Find inspiration for your custom order by browsing our past creations.</p>
 
             <!-- Gallery Filters -->
             <div class="flex flex-wrap justify-center space-x-3 mb-10">
-                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Styles</button>
-                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="wedding">Wedding</button>
-                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="corporate">Corporate</button>
-                <button class="gallery-filter-btn text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="custom">Fully Custom</button>
+                <button class="gallery-filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full bg-primary-pink text-white hover:bg-rose-700 transition duration-150" data-filter="all">All Styles</button>
+                <button class="gallery-filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="wedding">Wedding</button>
+                <button class="gallery-filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="corporate">Corporate</button>
+                <button class="gallery-filter-btn text-xs md:text-sm font-semibold px-4 py-2 rounded-full text-text-dark border border-secondary-pink hover:bg-secondary-pink hover:text-white transition duration-150" data-filter="custom">Fully Custom</button>
             </div>
 
             <!-- Gallery Grid -->
@@ -182,7 +182,7 @@
             </div>
 
             <div class="text-center mt-12">
-                <button id="open-design-modal-gallery" class="inline-block bg-primary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105">
+                <button id="open-design-modal-gallery" class="inline-block bg-primary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105 text-sm md:text-base">
                     Start Your Custom Design
                 </button>
             </div>
@@ -194,11 +194,11 @@
                     <img src="https://placehold.co/600x400/fce4ec/a020f0?text=Our+Floral+Workshop" onerror="this.onerror=null;this.src='https://placehold.co/600x400/fce4ec/a020f0?text=Our+Floral+Workshop';" alt="Florist working in studio" class="w-full h-auto rounded-xl shadow-2xl">
                 </div>
                 <div>
-                    <h2 class="text-3xl font-bold text-primary-pink mb-4">About Us: Crafted with Love</h2>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
+                     <h2 class="text-2xl md:text-3xl font-bold text-primary-pink mb-4">About Us: Crafted with Love</h2>
+                     <p class="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
                         At Han's Ribbon Bouquet, we believe flowers are more than just gifts—they are expressions of emotion, artfully arranged to convey your deepest sentiments. Each bouquet is meticulously handcrafted, blending tradition with modern aesthetics, ensuring a unique and memorable piece of floral artistry for every occasion.
                     </p>
-                    <p class="text-gray-700 leading-relaxed font-semibold">
+                         <p class="text-base md:text-lg text-gray-700 leading-relaxed font-semibold">
                         We are dedicated to sourcing the freshest, most beautiful blooms, creating designs that truly resonate with our customers.
                     </p>
                 </div>
@@ -207,17 +207,17 @@
 
         <!-- Bouquet Advisor Section (Gemini Integration) --><section id="advisor" class="bg-white/90 py-20 rounded-xl shadow-2xl mx-auto max-w-7xl my-12">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl font-bold text-center mb-4 text-primary-pink flex items-center justify-center">
-                    <span class="mr-3 text-4xl">✨</span> Your AI Bouquet Advisor
+                <h2 class="text-2xl md:text-3xl font-bold text-center mb-4 text-primary-pink flex items-center justify-center">
+                     <span class="mr-3 text-2xl md:text-3xl">✨</span> Your AI Bouquet Advisor
                 </h2>
-                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                <p class="text-base md:text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                     Unsure what to send? Tell our AI the **occasion, recipient, or emotion** you want to convey, and we'll suggest the perfect arrangement and message, grounded by real-time web search.
                 </p>
 
                 <div class="bg-white p-6 rounded-xl shadow-inner border border-pink-100">
-                    <textarea id="advisor-prompt" rows="3" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-primary-pink focus:border-primary-pink resize-none mb-4 text-gray-700" placeholder="e.g., 'A graduation gift for my best friend' or 'Something bright and comforting for a sympathy card'"></textarea>
+                     <textarea id="advisor-prompt" rows="3" class="w-full p-4 rounded-lg border border-gray-300 focus:ring-primary-pink focus:border-primary-pink resize-none mb-4 text-base md:text-lg text-gray-700" placeholder="e.g., 'A graduation gift for my best friend' or 'Something bright and comforting for a sympathy card'"></textarea>
                     
-                    <button id="advisor-button" class="w-full md:w-auto bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg flex items-center justify-center mx-auto" onclick="recommendBouquet()">
+                     <button id="advisor-button" class="w-full md:w-auto bg-secondary-pink text-white font-bold px-8 py-3 rounded-full hover:bg-primary-pink transition duration-300 shadow-lg flex items-center justify-center mx-auto text-sm md:text-base" onclick="recommendBouquet()">
                         <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Get Personalized Suggestion
                     </button>
                     <div id="advisor-loading" class="hidden mt-4 text-primary-pink font-medium">
@@ -226,10 +226,10 @@
                 </div>
 
                 <!-- Results Display Area --><div id="advisor-results" class="mt-10 p-6 bg-white rounded-xl shadow-2xl border-t-4 border-primary-pink hidden text-left">
-                    <h3 class="text-2xl font-bold text-primary-pink mb-3">Recommendation:</h3>
-                    <div id="recommendation-text" class="text-lg text-text-dark leading-relaxed"></div>
+                     <h3 class="text-xl md:text-2xl font-bold text-primary-pink mb-3">Recommendation:</h3>
+                     <div id="recommendation-text" class="text-base md:text-lg text-text-dark leading-relaxed"></div>
                     
-                    <div id="recommendation-sources" class="mt-4 pt-4 border-t border-gray-200 text-sm text-gray-500">
+                    <div id="recommendation-sources" class="mt-4 pt-4 border-t border-gray-200 text-xs md:text-sm text-gray-500">
                         <!-- Sources will be injected here --></div>
                 </div>
             </div>
@@ -238,10 +238,10 @@
         <!-- Call to Action Section (Delivery Info) --><section class="py-12 bg-primary-pink text-white text-center">
             <div class="max-w-4xl mx-auto px-4">
                 <h3 class="text-2xl md:text-3xl font-bold mb-4">Local Delivery Available!</h3>
-                <p class="text-lg opacity-90 mb-6">
+                 <p class="text-base md:text-lg opacity-90 mb-6">
                     Order before 2 PM for same-day delivery in the metro area. Perfect for those last-minute surprises.
                 </p>
-                <a href="#featured" class="inline-block bg-white text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-pink-100 transition duration-300 shadow-xl transform hover:scale-105">
+                 <a href="#featured" class="inline-block bg-white text-primary-pink font-bold px-8 py-3 rounded-full hover:bg-pink-100 transition duration-300 shadow-xl transform hover:scale-105 text-sm md:text-base">
                     Order Now
                 </a>
             </div>
@@ -253,15 +253,15 @@
         <div class="bg-white rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl transform transition-all duration-300">
             <div class="p-8">
                 <div class="flex justify-between items-center mb-6 border-b pb-4">
-                    <h2 class="text-3xl font-extrabold text-primary-pink">Design Your Custom Bouquet</h2>
-                    <button id="close-design-modal" class="text-text-dark hover:text-primary-pink text-2xl">
+                     <h2 class="text-2xl md:text-3xl font-extrabold text-primary-pink">Design Your Custom Bouquet</h2>
+                     <button id="close-design-modal" class="text-text-dark hover:text-primary-pink text-xl md:text-2xl">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
 
                 <!-- Step 1: Flower Details -->
                 <div class="mb-8 p-4 bg-pink-50 rounded-xl">
-                    <h3 class="text-xl font-semibold mb-4 text-text-dark">1. Choose Base Details</h3>
+                     <h3 class="text-lg md:text-xl font-semibold mb-4 text-text-dark">1. Choose Base Details</h3>
                     
                     <!-- Color Selection -->
                     <label class="block text-gray-700 font-medium mb-2">Flower Color Palette:</label>
@@ -275,19 +275,19 @@
 
                     <!-- Quantity Input -->
                     <label for="flower-quantity" class="block text-gray-700 font-medium mb-2">Total Number of Flowers (approx):</label>
-                    <input type="number" id="flower-quantity" value="20" min="5" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink mb-4">
+                     <input type="number" id="flower-quantity" value="20" min="5" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink mb-4 text-base md:text-lg">
 
                     <!-- Custom Text/Inspo Input (Supports drag-and-drop reference via text) -->
                     <label for="custom-inspo" class="block text-gray-700 font-medium mb-2">Inspiration (Text or Image Link):</label>
-                    <textarea id="custom-inspo" rows="3" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink text-gray-700" placeholder="e.g., 'A cascade of lilies and ferns like the photo I uploaded' or 'I want something bright for a summer wedding.'"></textarea>
-                    <p class="text-xs text-gray-500 mt-1">
+                     <textarea id="custom-inspo" rows="3" class="w-full p-3 border border-secondary-pink rounded-lg focus:ring-primary-pink focus:border-primary-pink text-base md:text-lg text-gray-700" placeholder="e.g., 'A cascade of lilies and ferns like the photo I uploaded' or 'I want something bright for a summer wedding.'"></textarea>
+                     <p class="text-xs md:text-sm text-gray-500 mt-1">
                         **Custom Order:** Describe your inspiration here. For drag-and-drop images, please mention the file name or provide a link for our team to reference.
                     </p>
                 </div>
 
                 <!-- Step 2: Add-Ons -->
                 <div class="mb-8 p-4 bg-pink-50 rounded-xl">
-                    <h3 class="text-xl font-semibold mb-4 text-text-dark">2. Choose Add-Ons (+$5.00 each)</h3>
+                     <h3 class="text-lg md:text-xl font-semibold mb-4 text-text-dark">2. Choose Add-Ons (+$5.00 each)</h3>
                     <div id="addons-selection" class="grid grid-cols-2 gap-4">
                         <label class="flex items-center space-x-3 text-gray-700">
                             <input type="checkbox" data-price="5" class="form-checkbox h-5 w-5 text-primary-pink rounded border-secondary-pink focus:ring-primary-pink">
@@ -314,8 +314,8 @@
 
                 <!-- Step 3: Calculation & Half Payment -->
                 <div class="p-4 bg-secondary-pink/50 rounded-xl border border-secondary-pink">
-                    <h3 class="text-xl font-semibold mb-4 text-text-dark">3. Order Summary & Payment</h3>
-                    <div class="space-y-2 mb-4 text-lg">
+                     <h3 class="text-lg md:text-xl font-semibold mb-4 text-text-dark">3. Order Summary & Payment</h3>
+                     <div class="space-y-2 mb-4 text-base md:text-lg">
                         <div class="flex justify-between">
                             <span>Estimated Base Price:</span>
                             <span id="base-price">$0.00</span>
@@ -324,7 +324,7 @@
                             <span>Total Add-Ons Cost:</span>
                             <span id="addons-cost">$0.00</span>
                         </div>
-                        <div class="flex justify-between font-bold text-2xl pt-2 border-t border-text-dark/20">
+                        <div class="flex justify-between font-bold text-xl md:text-2xl pt-2 border-t border-text-dark/20">
                             <span>Estimated Grand Total:</span>
                             <span id="grand-total">$0.00</span>
                         </div>
@@ -333,11 +333,11 @@
                     <!-- Half Payment Requirement -->
                     <div class="bg-white p-3 rounded-lg border-2 border-primary-pink text-center mt-4 shadow-inner">
                         <p class="font-bold text-primary-pink">Half Payment Required:</p>
-                        <p id="half-payment" class="text-3xl font-extrabold text-primary-pink mt-1">$0.00</p>
-                        <p class="text-sm text-gray-600 mt-2">To confirm your custom order, we require a non-refundable deposit of **50% of the estimated total**. The remainder is due upon delivery.</p>
+                        <p id="half-payment" class="text-2xl md:text-3xl font-extrabold text-primary-pink mt-1">$0.00</p>
+                         <p class="text-xs md:text-sm text-gray-600 mt-2">To confirm your custom order, we require a non-refundable deposit of **50% of the estimated total**. The remainder is due upon delivery.</p>
                     </div>
 
-                    <button onclick="alert('Proceeding to Checkout with Half Payment ($' + (parseFloat(document.getElementById('half-payment').innerText.replace('$', '')) || 0).toFixed(2) + ' required).')" class="w-full bg-primary-pink text-white font-bold px-8 py-3 rounded-full mt-6 hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105">
+                     <button onclick="alert('Proceeding to Checkout with Half Payment ($' + (parseFloat(document.getElementById('half-payment').innerText.replace('$', '')) || 0).toFixed(2) + ' required).')" class="w-full bg-primary-pink text-white font-bold px-8 py-3 rounded-full mt-6 hover:bg-rose-700 transition duration-300 shadow-xl transform hover:scale-105 text-sm md:text-base">
                         <i class="fa-solid fa-credit-card mr-2"></i> Pay Half Deposit & Submit Order
                     </button>
                 </div>
@@ -350,13 +350,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
             
             <!-- Logo/About --><div>
-                <h4 class="text-xl font-bold mb-4 text-primary-pink">Han's Ribbon Bouquet</h4>
-                <p class="text-sm">Bringing fresh, beautiful flowers to your door since 2023. Locally owned and operated.</p>
+                 <h4 class="text-lg md:text-xl font-bold mb-4 text-primary-pink">Han's Ribbon Bouquet</h4>
+                 <p class="text-xs md:text-sm">Bringing fresh, beautiful flowers to your door since 2023. Locally owned and operated.</p>
             </div>
 
             <!-- Quick Links --><div>
-                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul class="space-y-2 text-sm">
+                <h4 class="text-base md:text-lg font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-xs md:text-sm">
                     <li><a href="#featured" class="hover:text-primary-pink transition duration-150">Shop All</a></li>
                     <li><a href="#gallery" class="hover:text-primary-pink transition duration-150">Gallery</a></li>
                     <li><a href="#advisor" class="hover:text-primary-pink transition duration-150">AI Advisor</a></li>
@@ -366,22 +366,22 @@
             </div>
 
             <!-- Contact --><div>
-                <h4 class="text-lg font-semibold mb-4">Contact Us</h4>
-                <p class="text-sm">Email: <a href="mailto:hello@hansribbonbouquet.com" class="hover:text-primary-pink">hello@hansribbonbouquet.com</a></p>
-                <p class="text-sm">Phone: (555) BOUQUET</p>
-                <p class="text-sm mt-2">123 Floral Lane, Anytown, USA</p>
+                <h4 class="text-base md:text-lg font-semibold mb-4">Contact Us</h4>
+                <p class="text-xs md:text-sm">Email: <a href="mailto:hello@hansribbonbouquet.com" class="hover:text-primary-pink">hello@hansribbonbouquet.com</a></p>
+                <p class="text-xs md:text-sm">Phone: (555) BOUQUET</p>
+                <p class="text-xs md:text-sm mt-2">123 Floral Lane, Anytown, USA</p>
             </div>
 
             <!-- Social Media --><div>
-                <h4 class="text-lg font-semibold mb-4">Connect</h4>
-                <div class="flex space-x-4 text-xl">
+                <h4 class="text-base md:text-lg font-semibold mb-4">Connect</h4>
+                <div class="flex space-x-4 text-lg md:text-xl">
                     <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="hover:text-primary-pink transition duration-150"><i class="fab fa-pinterest"></i></a>
                 </div>
             </div>
         </div>
-        <div class="mt-8 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+            <div class="mt-8 pt-6 border-t border-gray-700 text-center text-xs md:text-sm text-gray-400">
             &copy; 2025 Han's Ribbon Bouquet. All rights reserved.
         </div>
     </footer>
