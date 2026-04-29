@@ -4,7 +4,7 @@
 /* 1. Set Logo as Fixed Background for the entire page */
 body {
     font-family: 'Inter', sans-serif;
-    background-image: url('/home/hanania/Downloads/Telegram Desktop/photo_2025-10-28_21-45-05.jpg');
+    background-image: url('../images/photo_2025-10-28_21-45-05-removebg-preview.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
