@@ -2,16 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
 
 /* 1. Set Logo as Fixed Background for the entire page */
-body {
+/* body {
     font-family: 'Inter', sans-serif;
     background-image: url('../images/photo_2025-10-28_21-45-05-removebg-preview.png');
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
-}
+} */
 
 /* 2. Add White Overlay for Readability */
-body::before {
+/* body::before {
     content: '';
     position: fixed;
     top: 0;
@@ -20,7 +20,7 @@ body::before {
     bottom: 0;
     background: rgba(255, 255, 255, 0.75); /* 75% transparent white overlay */
     z-index: -1;
-}
+} */
 
 .brand-slogan {
     font-family: 'Dancing Script', cursive;
