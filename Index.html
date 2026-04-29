@@ -66,16 +66,16 @@
         </nav>
 
         <!-- Mobile Menu Drawer (Hidden by default) --><div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white shadow-xl py-4 transition-all duration-300">
-            <div class="flex flex-col space-y-3 px-4">
+            <div class="flex flex-col items-center space-y-3 px-4">
                 <a href="#featured" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Shop</a>
                 <a href="#gallery" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Gallery</a>
                 <a href="#advisor" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">AI Advisor</a>
                 <a href="#about" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
                 <a href="#contact" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
                  <!-- Cart Icon with Item Count (Mobile) -->
-                 <div class="relative cursor-pointer flex justify-center mt-4" id="cart-icon-mobile">
+                 <div id="cart-icon-mobile" class="relative mt-4">
                      <img src="images/image-removebg-preview(1).png" alt="Shopping Cart" class="h-10 w-10 object-contain">
-                     <span id="cart-count-mobile" class="absolute -top-1 -right-4 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                     <span id="cart-count-mobile" class="absolute -top-1 -right-1 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
                  </div>
                   <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
                      <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
