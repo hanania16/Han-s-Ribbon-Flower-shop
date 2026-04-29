@@ -41,7 +41,7 @@
                 </div>
             </a>
 
-            <!-- Desktop Menu --><div class="hidden md:flex space-x-8 items-center">
+            <!-- Desktop Menu --><div class="hidden lg:flex space-x-8 items-center">
                 <a href="#featured" class="text-text-dark hover:text-primary-pink transition duration-150">Shop</a>
                 <a href="#gallery" class="text-text-dark hover:text-primary-pink transition duration-150">Gallery</a>
                 <a href="#advisor" class="text-text-dark hover:text-primary-pink transition duration-150">AI Advisor</a>
@@ -55,12 +55,16 @@
                 </button>
             </div>
 
-            <!-- Mobile Menu Button --><button id="mobile-menu-button" class="md:hidden p-2 rounded-lg text-primary-pink hover:bg-pink-50 transition duration-150">
-                <i class="fa-solid fa-bars text-xl"></i>
+            <!-- Mobile Menu Button --><button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg text-primary-pink hover:bg-pink-50 transition duration-150 focus:outline-none" aria-label="Toggle mobile menu">
+                <div class="hamburger-icon w-6 h-5 relative flex flex-col justify-between">
+                    <span class="hamburger-line block w-full h-0.5 bg-current rounded transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line block w-full h-0.5 bg-current rounded transition-all duration-300 origin-center"></span>
+                    <span class="hamburger-line block w-full h-0.5 bg-current rounded transition-all duration-300 origin-center"></span>
+                </div>
             </button>
         </nav>
 
-        <!-- Mobile Menu Drawer (Hidden by default) --><div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white shadow-xl py-4 transition-all duration-300">
+        <!-- Mobile Menu Drawer (Hidden by default) --><div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white shadow-xl py-4 transition-all duration-300">
             <div class="flex flex-col space-y-3 px-4">
                 <a href="#featured" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Shop</a>
                 <a href="#gallery" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Gallery</a>
@@ -390,14 +394,7 @@
 
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
-                const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.classList.remove('fa-xmark');
-                    icon.classList.add('fa-bars');
-                } else {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-xmark');
-                }
+                mobileMenuButton.classList.toggle('active');
             });
 
             // --- Custom Design Modal Logic ---

@@ -39,3 +39,26 @@
 .color-swatch.selected {
     border-color: #e91e63; /* primary-pink */
 }
+
+/* Hamburger Menu Icon Animation */
+.hamburger-icon {
+    transition: transform 0.3s ease;
+}
+
+.hamburger-line {
+    transform-origin: center;
+}
+
+/* Active state: hamburger transforms to X */
+#mobile-menu-button.active .hamburger-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+#mobile-menu-button.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+#mobile-menu-button.active .hamburger-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
