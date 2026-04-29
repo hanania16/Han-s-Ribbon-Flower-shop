@@ -28,19 +28,20 @@
 </head>
     <body class="text-base md:text-lg text-text-dark antialiased">
 
-     <!-- Navigation --><header class="sticky top-0 z-50 bg-white shadow-lg">
-        <nav class="w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between py-4">
-            <!-- Logo and Name --><a href="#" class="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
-                 <img src="images/image-removebg-preview.png" alt="Han's Ribbon Bouquet Logo" class="h-16 w-16 md:h-20 md:w-20 object-cover"
-      onerror="this.onerror=null;this.src='https://placehold.co/112x112/f8bbd0/4a148c?text=Logo';"
+    <!-- Navigation --><header class="sticky top-0 z-50 bg-white shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+<!-- Logo and Name --><a href="#" class="flex items-center space-x-3">
+                 <img src="images/image-removebg-preview.png" alt="Han's Ribbon Bouquet Logo" class="h-28 w-28 object-cover"
+     onerror="this.onerror=null;this.src='https://placehold.co/112x112/f8bbd0/4a148c?text=Logo';"
 >
 
-                 <div>
-                     <span class="text-lg md:text-xl font-extrabold text-primary-pink tracking-tight">Han's Ribbon Bouquet</span>
-                 </div>
-             </a>
+                <div>
+                     <span class="text-xl md:text-2xl font-extrabold text-primary-pink tracking-tight">Han's Ribbon Bouquet</span>
+                    <!-- <p class="text-sm text-text-dark brand-slogan mt-0.5">floral artistry for every occasion</p> -->
+                </div>
+            </a>
 
-             <!-- Desktop Menu --><div class="hidden lg:flex items-center space-x-4 md:space-x-8">
+            <!-- Desktop Menu --><div class="hidden lg:flex space-x-8 items-center">
                 <a href="#featured" class="text-text-dark hover:text-primary-pink transition duration-150">Shop</a>
                 <a href="#gallery" class="text-text-dark hover:text-primary-pink transition duration-150">Gallery</a>
                 <a href="#advisor" class="text-text-dark hover:text-primary-pink transition duration-150">AI Advisor</a>
@@ -50,9 +51,9 @@
                     <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
                 </button>
                 <!-- Cart Icon with Item Count -->
-                <div class="relative cursor-pointer p-2" id="cart-icon">
-                    <img src="images/image-removebg-preview(1).png" alt="Shopping Cart" class="h-8 w-8 md:h-10 md:w-10 object-contain transition-transform duration-150 hover:scale-110">
-                    <span id="cart-count" class="absolute -top-1 -right-1 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                <div id="cart-icon" class="relative cursor-pointer bg-primary-pink text-white px-3 py-2 md:px-4 md:py-2 rounded-full shadow-md hover:bg-rose-700 transition duration-150 flex items-center group">
+                    <i class="fa-solid fa-cart-shopping text-lg md:text-xl"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
                 </div>
             </div>
 
@@ -66,21 +67,21 @@
         </nav>
 
         <!-- Mobile Menu Drawer (Hidden by default) --><div id="mobile-menu" class="hidden lg:hidden absolute w-full bg-white shadow-xl py-4 transition-all duration-300">
-            <div class="flex flex-col items-center space-y-3 px-4">
+            <div class="flex flex-col space-y-3 px-4">
                 <a href="#featured" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Shop</a>
                 <a href="#gallery" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Gallery</a>
                 <a href="#advisor" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">AI Advisor</a>
                 <a href="#about" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
                 <a href="#contact" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
-                 <!-- Cart Icon with Item Count (Mobile) -->
-                 <div id="cart-icon-mobile" class="relative mt-4">
-                     <img src="images/image-removebg-preview(1).png" alt="Shopping Cart" class="h-10 w-10 object-contain">
-                     <span id="cart-count-mobile" class="absolute -top-1 -right-1 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
-                 </div>
-                  <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
+                 <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
                      <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
                  </button>
-                
+                 <!-- Cart Icon with Item Count (Mobile) -->
+                 <div id="cart-icon-mobile" class="relative cursor-pointer w-full bg-primary-pink text-white mt-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 flex items-center justify-center text-sm md:text-base shadow-md">
+                     <i class="fa-solid fa-cart-shopping mr-2"></i>
+                     <span id="cart-count-mobile" class="absolute -top-2 -right-8 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white">0</span>
+                     Cart
+                 </div>
             </div>
         </div>
     </header>
@@ -424,7 +425,7 @@
             const colorSwatches = document.querySelectorAll('.color-swatch');
 
             // Add to cart buttons (product cards)
-            const addToOrderButtons = document.querySelectorAll('.product-card button');
+            const addToOrderButtons = document.querySelectorAll('.product-card button.px-8, .product-card button.w-full, .product-card button');
 
             addToOrderButtons.forEach(button => {
                 button.addEventListener('click', () => {
