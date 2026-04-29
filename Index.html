@@ -5,49 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Han's Ribbon Bouquet | Floral Artistry</title>
     <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4C+B9p7a+E/7tWv8lX/LpT1qFq9xH+eD5u3vA5/V8XgUaN3vU6e8+4z8G0tQG2Q3lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        /* Set Inter font as default */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Dancing+Script:wght@400..700&display=swap');
-        
-        /* 1. Set Logo as Fixed Background for the entire page */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: url('/home/hanania/Downloads/Telegram Desktop/photo_2025-10-28_21-45-05.jpg');
-            background-size: cover;
-            background-attachment: fixed; */
-            background-position: center;
-        }
-
-        /* 2. Add White Overlay for Readability */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.75); /* 75% transparent white overlay */
-            z-index: -1;
-        }
-        
-        .brand-slogan {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 500;
-        }
-        /* Style for color swatches in the modal */
-        .color-swatch {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: border-color 0.15s;
-        }
-        .color-swatch.selected {
-            border-color: #e91e63; /* primary-pink */
-        }
-    </style>
+    <!-- Font Awesome for Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4C+B9p7a+E/7tWv8lX/LpT1qFq9xH+eD5u3vA5/V8XgUaN3vU6e8+4z8G0tQG2Q3lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -64,6 +23,8 @@
             }
         }
     </script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="text-text-dark antialiased">
 
@@ -565,157 +526,8 @@
 
 
         });
-
-        // --- Gemini API Integration for Bouquet Advisor ---
-
-        const API_MODEL = 'gemini-2.5-flash-preview-09-2025';
-        // The key is provided by the canvas environment automatically if left empty.
-        const API_KEY = ""; 
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${API_MODEL}:generateContent?key=${API_KEY}`;
-        
-        // Elements
-        const promptInput = document.getElementById('advisor-prompt');
-        const advisorButton = document.getElementById('advisor-button');
-        const loadingIndicator = document.getElementById('advisor-loading');
-        const resultsContainer = document.getElementById('advisor-results');
-        const recommendationText = document.getElementById('recommendation-text');
-        const recommendationSources = document.getElementById('recommendation-sources');
-
-        /**
-         * Helper function to implement exponential backoff for API calls.
-         */
-        async function fetchWithBackoff(url, options, maxRetries = 5) {
-            let delay = 1000;
-            for (let i = 0; i < maxRetries; i++) {
-                try {
-                    const response = await fetch(url, options);
-                    if (response.status === 429) {
-                        throw new Error('Rate limit exceeded');
-                    }
-                    if (!response.ok) {
-                        const errorBody = await response.text();
-                        console.error('API Error Response:', errorBody);
-                        throw new Error(`API call failed with status: ${response.status}`);
-                    }
-                    return response;
-                } catch (error) {
-                    console.warn(`Request failed (attempt ${i + 1}/${maxRetries}). Retrying in ${delay / 1000}s.`, error.message);
-                    if (i === maxRetries - 1) throw error; // Re-throw on last attempt
-                    await new Promise(resolve => setTimeout(resolve, delay));
-                    delay *= 2; // Exponential increase
-                }
-            }
-        }
-
-        /**
-         * Generates a flower recommendation using the Gemini API.
-         */
-        async function fetchGeminiRecommendation(userPrompt) {
-            
-            const systemInstruction = `
-                You are a world-class artisan florist and a helpful assistant for Han's Ribbon Bouquet shop. 
-                Your task is to recommend a perfect flower bouquet and suggest a brief, thoughtful card message based on the user's input (occasion, recipient, or sentiment).
-                Your response must be structured clearly, addressing both the arrangement and the message. Use search grounding to ensure your recommendations are culturally appropriate, consider flower meanings, and reflect current trends or availability.
-                
-                Format your response with the sections bolded and separated by a line break:
-                **Recommended Arrangement:** [Name and description of the bouquet, including 3-4 specific flowers and their colors/meaning.]
-                **Suggested Card Message:** [A brief, heartfelt message (1-2 sentences) for the recipient.]
-            `;
-
-            const payload = {
-                contents: [{ 
-                    parts: [{ text: userPrompt }] 
-                }],
-                tools: [{ "google_search": {} }],
-                systemInstruction: {
-                    parts: [{ text: systemInstruction }]
-                },
-            };
-
-            const options = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            };
-
-            try {
-                const response = await fetchWithBackoff(API_URL, options);
-                const result = await response.json();
-                
-                const candidate = result.candidates?.[0];
-
-                if (!candidate || !candidate.content?.parts?.[0]?.text) {
-                     // Throw an error if the model returned nothing useful
-                     throw new Error("Received an empty or malformed response from the model.");
-                }
-
-                const text = candidate.content.parts[0].text;
-                let sources = [];
-                const groundingMetadata = candidate.groundingMetadata;
-
-                if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                    sources = groundingMetadata.groundingAttributions
-                        .map(attribution => ({
-                            uri: attribution.web?.uri,
-                            title: attribution.web?.title,
-                        }))
-                        .filter(source => source.uri && source.title);
-                }
-                
-                return { text, sources };
-
-            } catch (error) {
-                console.error("Gemini API Request Failed:", error);
-                // Return a user-friendly error message
-                return { text: "I apologize, but I couldn't generate a personalized recommendation right now. Please try again later or contact our support.", sources: [] };
-            }
-        }
-
-        /**
-         * Main handler for the Bouquet Advisor button click.
-         */
-        async function recommendBouquet() {
-            const prompt = promptInput.value.trim();
-            if (prompt.length < 5) {
-                // Display error message to user
-                recommendationText.innerHTML = '<p class="text-red-500 font-semibold">Please enter a few more details about the occasion!</p>';
-                resultsContainer.classList.remove('hidden');
-                recommendationSources.innerHTML = '';
-                return;
-            }
-
-            // Show loading state
-            advisorButton.disabled = true;
-            loadingIndicator.classList.remove('hidden');
-            resultsContainer.classList.add('hidden');
-            recommendationText.innerHTML = '';
-            recommendationSources.innerHTML = '';
-
-            const { text, sources } = await fetchGeminiRecommendation(prompt);
-
-            // Hide loading state and show results
-            advisorButton.disabled = false;
-            loadingIndicator.classList.add('hidden');
-            
-            // Display the recommendation text
-            // Simple markdown conversion for bolding and newlines
-            recommendationText.innerHTML = text
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n/g, '<br>');
-            
-            resultsContainer.classList.remove('hidden');
-
-            // Display sources if available
-            if (sources.length > 0) {
-                let sourcesHtml = '<strong>Sources:</strong> ';
-                sources.forEach((source, index) => {
-                    sourcesHtml += `<a href="${source.uri}" target="_blank" class="text-primary-pink hover:text-rose-700 underline">${source.title}</a>${index < sources.length - 1 ? ', ' : ''}`;
-                });
-                recommendationSources.innerHTML = sourcesHtml;
-            } else {
-                 recommendationSources.innerHTML = 'No external search sources were cited for this recommendation.';
-            }
-        }
     </script>
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
