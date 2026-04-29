@@ -50,9 +50,11 @@
                 <button id="open-design-modal" class="bg-secondary-pink text-text-dark px-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 shadow-md flex items-center text-sm md:text-base">
                     <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
                 </button>
-                <button class="bg-primary-pink text-white px-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 shadow-md flex items-center text-sm md:text-base">
-                    <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
-                </button>
+                <!-- Cart Icon with Item Count -->
+                <div class="relative cursor-pointer p-2" id="cart-icon">
+                    <img src="images/image-removebg-preview(1).png" alt="Shopping Cart" class="h-8 w-8 md:h-10 md:w-10 object-contain transition-transform duration-150 hover:scale-110">
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                </div>
             </div>
 
             <!-- Mobile Menu Button --><button id="mobile-menu-button" class="lg:hidden p-2 rounded-lg text-primary-pink hover:bg-pink-50 transition duration-150 focus:outline-none" aria-label="Toggle mobile menu">
@@ -71,12 +73,15 @@
                 <a href="#advisor" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">AI Advisor</a>
                 <a href="#about" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About Us</a>
                 <a href="#contact" class="block py-2 text-text-dark hover:bg-pink-50 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
-                <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
-                    <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
-                </button>
-                <button class="w-full bg-primary-pink text-white mt-4 py-2 rounded-full font-semibold hover:bg-rose-700 transition duration-150 flex items-center justify-center text-sm md:text-base">
-                    <i class="fa-solid fa-cart-shopping mr-2"></i> Cart (0)
-                </button>
+                 <!-- Cart Icon with Item Count (Mobile) -->
+                 <div class="relative cursor-pointer flex justify-center mt-4" id="cart-icon-mobile">
+                     <img src="images/image-removebg-preview(1).png" alt="Shopping Cart" class="h-10 w-10 object-contain">
+                     <span id="cart-count-mobile" class="absolute -top-1 -right-4 bg-secondary-pink text-text-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border-2 border-white shadow-sm">0</span>
+                 </div>
+                  <button id="open-design-modal-mobile" class="w-full bg-secondary-pink text-text-dark mt-4 py-2 rounded-full font-semibold hover:bg-primary-pink hover:text-white transition duration-150 flex items-center justify-center text-sm md:text-base">
+                     <i class="fa-solid fa-paintbrush mr-2"></i> Design Your Own
+                 </button>
+                
             </div>
         </div>
     </header>
@@ -397,6 +402,20 @@
                 mobileMenuButton.classList.toggle('active');
             });
 
+            // --- Cart Count Logic ---
+            let cartCount = 0;
+            const cartCountElement = document.getElementById('cart-count');
+            const cartCountMobileElement = document.getElementById('cart-count-mobile');
+
+            const updateCartCount = () => {
+                if (cartCountElement) {
+                    cartCountElement.textContent = cartCount;
+                }
+                if (cartCountMobileElement) {
+                    cartCountMobileElement.textContent = cartCount;
+                }
+            };
+
             // --- Custom Design Modal Logic ---
             const designModal = document.getElementById('design-modal');
             const openModalBtns = document.querySelectorAll('#open-design-modal, #open-design-modal-mobile, #open-design-modal-gallery');
@@ -404,6 +423,16 @@
             const quantityInput = document.getElementById('flower-quantity');
             const addonsCheckboxes = document.querySelectorAll('#addons-selection input[type="checkbox"]');
             const colorSwatches = document.querySelectorAll('.color-swatch');
+
+            // Add to cart buttons (product cards)
+            const addToOrderButtons = document.querySelectorAll('.product-card button');
+
+            addToOrderButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    cartCount++;
+                    updateCartCount();
+                });
+            });
 
             const BASE_PRICE_PER_FLOWER = 3.00; // Simplified base price for calculation
 
