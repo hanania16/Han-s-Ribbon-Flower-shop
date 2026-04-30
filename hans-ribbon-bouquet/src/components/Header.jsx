@@ -12,7 +12,7 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
         <a href="#" className="logo-area">
           <img 
             className="logo-img"
-            src="https://placehold.co/112x112/f8bbd0/4a148c?text=✿"
+            src="/logo.png"
             alt="Han's Ribbon Bouquet"
           />
           <div>
@@ -32,7 +32,7 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
             Design Yours
           </button>
           <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
-            <i className="fa-solid fa-cart-shopping"></i>
+            <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
             <span className="cart-badge" id="cartBadge">{cartCount}</span>
           </button>
         </div>
