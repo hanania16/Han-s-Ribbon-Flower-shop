@@ -239,6 +239,26 @@ nav {
     font-size: 0.95rem;
     color: #3a1a2e; text-decoration: none;
 }
+.mobile-cart-btn {
+    margin-top: 0.75rem;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1.5px solid var(--blush);
+    background: white;
+}
+.mobile-cart-btn img {
+    width: 18px; height: 18px;
+}
+.mobile-cart-btn:hover {
+    background: var(--blush);
+    transform: none;
+    box-shadow: none;
+}
 
 /* ── HERO ── */
 .hero {

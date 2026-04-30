@@ -44,7 +44,7 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
           <span></span><span></span><span></span>
         </button>
       </nav>
-      <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
+        <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
         <a href="#featured" onClick={closeMobile}>Shop</a>
         <a href="#gallery" onClick={closeMobile}>Gallery</a>
         <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
@@ -52,6 +52,10 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
         <a href="#contact" onClick={closeMobile}>Contact</a>
         <button className="nav-btn" style={{marginTop:'0.5rem',width:'100%',borderRadius:'10px'}} onClick={() => { openModal(); closeMobile(); }}>
           Design Your Own
+        </button>
+        <button className="cart-btn mobile-cart-btn" title="Cart" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
+          <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
+          <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
         </button>
       </div>
     </header>
