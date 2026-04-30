@@ -53,10 +53,10 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
         <button className="nav-btn" style={{marginTop:'0.5rem',width:'100%',borderRadius:'10px'}} onClick={() => { openModal(); closeMobile(); }}>
           Design Your Own
         </button>
-        <button className="cart-btn mobile-cart-btn" title="Cart" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
-          <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
+        <div className="mobile-cart-item" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
+          <img src="/cart-icon.png" alt="Cart" className="mobile-cart-img" />
           <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
-        </button>
+        </div>
       </div>
     </header>
   );
