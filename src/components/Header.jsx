@@ -1,0 +1,64 @@
+import { useState, useEffect, useRef } from 'react';
+import '../css/Header.css';
+
+export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const mobileMenuRef = useRef(null);
+
+  const closeMobile = () => setMobileOpen(false);
+
+  return (
+    <header>
+      <nav>
+        <a href="#" className="logo-area">
+          <img 
+            className="logo-img"
+            src="/logo.png"
+            alt="Han's Ribbon Bouquet"
+          />
+          <div>
+            <div className="brand-name">Han's Ribbon Bouquet</div>
+            <div className="brand-tag">floral artistry for every occasion</div>
+          </div>
+        </a>
+
+        <div className="nav-links">
+          <a href="#featured">Shop</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#advisor">AI Advisor</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <button className="nav-btn" onClick={openModal}>
+            <i className="fa-solid fa-paintbrush nav-btn-icon"></i>
+            Design Yours
+          </button>
+          <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
+            <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
+            <span className="cart-badge" id="cartBadge">{cartCount}</span>
+          </button>
+        </div>
+
+        <button 
+          className={`mobile-toggle ${mobileOpen ? 'active' : ''}`} 
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+        <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
+        <a href="#featured" onClick={closeMobile}>Shop</a>
+        <a href="#gallery" onClick={closeMobile}>Gallery</a>
+        <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
+        <a href="#about" onClick={closeMobile}>About</a>
+        <a href="#contact" onClick={closeMobile}>Contact</a>
+        <button className="nav-btn mobile-menu-btn" onClick={() => { openModal(); closeMobile(); }}>
+          Design Your Own
+        </button>
+        <div className="mobile-cart-item" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
+          <img src="/cart-icon.png" alt="Cart" className="mobile-cart-img" />
+          <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
+        </div>
+      </div>
+    </header>
+  );
+}

@@ -1,0 +1,9 @@
+/* FeaturedProducts component styles */
+
+.product-card-hidden {
+    display: none;
+}
+
+.add-btn-added {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+}

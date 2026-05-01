@@ -1,0 +1,42 @@
+/* AIAdvisor component styles */
+
+.advisor-spinner {
+    display: none;
+}
+
+.advisor-spinner.show {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.advisor-loading-icon-hidden {
+    display: inline-block;
+}
+
+.advisor-loading-icon-hidden.show {
+    display: none;
+}
+
+.advisor-results-show {
+    display: block;
+}
+
+.advisor-results-hidden {
+    display: none;
+}
+
+.advisor-recommendation-title {
+    color: var(--pink);
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+}
+
+.advisor-recommendation-text {
+    margin-top: 0.75rem;
+}

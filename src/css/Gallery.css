@@ -1,0 +1,19 @@
+/* Gallery component styles */
+
+.gallery-item-hidden {
+    display: none !important;
+}
+
+.gallery-center-btn-margin {
+    margin-top: 3rem;
+}
+
+/* Staggered reveal animation delays */
+.gallery-grid .gallery-item:nth-child(1) { transition-delay: 0.00s; }
+.gallery-grid .gallery-item:nth-child(2) { transition-delay: 0.08s; }
+.gallery-grid .gallery-item:nth-child(3) { transition-delay: 0.16s; }
+.gallery-grid .gallery-item:nth-child(4) { transition-delay: 0.24s; }
+.gallery-grid .gallery-item:nth-child(5) { transition-delay: 0.32s; }
+.gallery-grid .gallery-item:nth-child(6) { transition-delay: 0.40s; }
+.gallery-grid .gallery-item:nth-child(7) { transition-delay: 0.48s; }
+.gallery-grid .gallery-item:nth-child(8) { transition-delay: 0.56s; }
