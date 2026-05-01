@@ -13,10 +13,10 @@ export default function Hero() {
         <div className="hero-eyebrow">✦ Handcrafted with Love ✦</div>
         <h1>Exquisite<br/><span>Floral Artistry</span></h1>
         <p>Hand-tied bouquets, crafted with passion and elegance for every precious moment.</p>
-        <a href="#featured" className="hero-cta">
-          <i className="fa-solid fa-seedling"></i>
-          Explore Collection
-        </a>
+        <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',justifyContent:'center'}}>
+          <a href="#featured" className="cta-white-btn">Order Now</a>
+          <a href="#featured" className="cta-outline-btn">Explore Collection</a>
+        </div>
       </div>
     </section>
   );

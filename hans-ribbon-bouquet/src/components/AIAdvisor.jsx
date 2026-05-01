@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 export default function AIAdvisor() {
   const [prompt, setPrompt] = useState('');
@@ -29,21 +29,22 @@ export default function AIAdvisor() {
       const reply = data.content?.map(b => b.text || '').join('') || 'Something went wrong. Please try again.';
       setRecommendation(reply);
       setShowResults(true);
-    } catch (err) {
-      setRecommendation('Unable to connect right now. Please try again shortly.');
-      setShowResults(true);
+     } catch {
+       setRecommendation('Unable to connect right now. Please try again shortly.');
+       setShowResults(true);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section id="advisor" className="advisor-bg">
-      <div className="section-inner">
-        <div className="reveal">
-          <div className="section-label">— Powered by AI —</div>
-          <h2 className="section-title">✨ Your Bouquet Advisor</h2>
-          <p className="section-sub">Tell us the occasion, recipient, or emotion you want to convey — we'll suggest the perfect arrangement.</p>
+     <section id="advisor" className="advisor-bg">
+       <div className="section-inner">
+          <div className="reveal">
+            <div className="section-label">— Powered by AI —</div>
+            <h2 className="section-title">✨ Your Bouquet Advisor</h2>
+            <p className="section-sub">Tell us the occasion, recipient, or emotion you want to convey — we'll suggest the perfect arrangement.</p>
+          </div>
         </div>
 
         <div className="advisor-card reveal">
@@ -66,7 +67,6 @@ export default function AIAdvisor() {
             </div>
           )}
         </div>
-      </div>
     </section>
   );
 }
