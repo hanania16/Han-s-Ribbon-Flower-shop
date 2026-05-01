@@ -14,7 +14,10 @@ export default function Hero() {
         <h1>Exquisite<br/><span>Floral Artistry</span></h1>
         <p>Hand-tied bouquets, crafted with passion and elegance for every precious moment.</p>
         <div style={{display:'flex',gap:'1rem',flexWrap:'wrap',justifyContent:'center'}}>
-          <a href="#featured" className="cta-white-btn">Order Now</a>
+          <a href="#featured" className="hero-cta">
+            <i className="fa-solid fa-cart-shopping"></i>
+            Order Now
+          </a>
           <a href="#featured" className="cta-outline-btn">Explore Collection</a>
         </div>
       </div>

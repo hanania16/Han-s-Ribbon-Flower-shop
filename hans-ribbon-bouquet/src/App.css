@@ -350,28 +350,30 @@ nav {
     animation: fadeSlideUp 0.9s 0.7s ease forwards;
 }
 .hero-cta {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 1rem 2.5rem;
-    background: var(--pink);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 0.88rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: all 0.35s;
-    box-shadow: 0 8px 30px rgba(233,30,99,0.35);
-    opacity: 0;
-    animation: fadeSlideUp 0.9s 0.9s ease forwards;
-    position: relative; overflow: hidden;
-}
-.hero-cta::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.5s;
-}
+     display: inline-flex; align-items: center; gap: 10px;
+     padding: 1rem 2.5rem;
+     background: var(--pink);
+     color: white;
+     text-decoration: none;
+     border-radius: 50px;
+     font-size: 0.88rem;
+     letter-spacing: 0.12em;
+     text-transform: uppercase;
+     transition: all 0.35s;
+     box-shadow: 0 8px 30px rgba(233,30,99,0.35);
+     position: relative; overflow: hidden;
+ }
+ .hero-cta:not(.hero-content .hero-cta) {
+     opacity: 1;
+     animation: none;
+ }
+ .hero-cta::before {
+     content: '';
+     position: absolute; inset: 0;
+     background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.25) 50%, transparent 70%);
+     transform: translateX(-100%);
+     transition: transform 0.5s;
+ }
 .hero-cta:hover::before { transform: translateX(100%); }
 .hero-cta:hover {
     transform: translateY(-3px);
@@ -786,19 +788,26 @@ section { position: relative; }
      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
      margin: 0 0.5rem;
  }
- .cta-outline-btn {
-     display: inline-block;
-     padding: 1rem 2.5rem;
-     background: transparent;
-     color: white;
-     border: 2px solid rgba(255,255,255,0.6);
-     border-radius: 50px; text-decoration: none;
-     font-size: 0.85rem; letter-spacing: 0.1em;
-     text-transform: uppercase; font-weight: 600;
-     transition: all 0.3s;
-     box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-     margin: 0 0.5rem;
- }
+.cta-outline-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--pink);
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50px; text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.1em;
+      text-transform: uppercase; font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      margin: 0 0.5rem;
+  }
+  .cta-outline-btn:hover {
+      background: white;
+      color: var(--pink);
+      border-color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+  }
  .cta-white-btn:hover {
      transform: translateY(-3px);
      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
