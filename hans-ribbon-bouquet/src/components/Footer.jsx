@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './Footer.css';
 
 export default function Footer() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -46,7 +47,7 @@ export default function Footer() {
         </div>
         <div>
           <h5>Send us a Message</h5>
-          <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',gap:'0.75rem',marginTop:'0.5rem'}}>
+          <form onSubmit={handleSubmit} className="footer-form">
             <input
               type="text"
               name="name"
@@ -54,16 +55,6 @@ export default function Footer() {
               value={formData.name}
               onChange={handleChange}
               required
-              style={{
-                padding:'0.75rem',
-                background:'rgba(255,255,255,0.08)',
-                border:'1px solid rgba(255,255,255,0.15)',
-                borderRadius:'8px',
-                color:'white',
-                fontSize:'0.85rem',
-                outline:'none',
-                transition:'all 0.2s'
-              }}
             />
             <input
               type="email"
@@ -72,16 +63,6 @@ export default function Footer() {
               value={formData.email}
               onChange={handleChange}
               required
-              style={{
-                padding:'0.75rem',
-                background:'rgba(255,255,255,0.08)',
-                border:'1px solid rgba(255,255,255,0.15)',
-                borderRadius:'8px',
-                color:'white',
-                fontSize:'0.85rem',
-                outline:'none',
-                transition:'all 0.2s'
-              }}
             />
             <textarea
               name="message"
@@ -90,39 +71,16 @@ export default function Footer() {
               onChange={handleChange}
               rows="3"
               required
-              style={{
-                padding:'0.75rem',
-                background:'rgba(255,255,255,0.08)',
-                border:'1px solid rgba(255,255,255,0.15)',
-                borderRadius:'8px',
-                color:'white',
-                fontSize:'0.85rem',
-                outline:'none',
-                resize:'vertical',
-                transition:'all 0.2s'
-              }}
             />
             <button
               type="submit"
               disabled={formStatus === 'sending'}
-              style={{
-                padding:'0.75rem',
-                background: formStatus === 'success' ? '#22c55e' : 'var(--pink)',
-                color:'white',
-                border:'none',
-                borderRadius:'8px',
-                fontSize:'0.8rem',
-                letterSpacing:'0.1em',
-                textTransform:'uppercase',
-                fontWeight:600,
-                cursor: formStatus === 'sending' ? 'wait' : 'pointer',
-                transition:'all 0.3s'
-              }}
+              className={formStatus === 'success' ? 'submit-success' : ''}
             >
               {formStatus === 'sending' ? 'Sending...' : formStatus === 'success' ? 'Sent!' : 'Send Message'}
             </button>
             {formStatus === 'error' && (
-              <p style={{color:'#ef4444',fontSize:'0.8rem',margin:0}}>Failed to send. Please try again.</p>
+              <p className="error-message">Failed to send. Please try again.</p>
             )}
           </form>
         </div>
