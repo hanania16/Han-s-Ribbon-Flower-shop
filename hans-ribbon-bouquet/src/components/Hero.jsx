@@ -18,7 +18,7 @@ export default function Hero() {
             <i className="fa-solid fa-cart-shopping"></i>
             Order Now
           </a>
-          <a href="#featured" className="cta-outline-btn">Explore Collection</a>
+           <a href="#gallery" className="cta-outline-btn">Explore Collection</a>
         </div>
       </div>
     </section>
