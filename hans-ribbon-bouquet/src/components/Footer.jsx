@@ -1,4 +1,27 @@
+import { useState } from 'react';
+
 export default function Footer() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('sending');
+    try {
+      // In a real app, this would send to a backend
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setFormStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setFormStatus(''), 3000);
+    } catch {
+      setFormStatus('error');
+    }
+  };
+
   return (
     <footer id="contact">
       <div className="footer-inner">
@@ -20,6 +43,88 @@ export default function Footer() {
           <p><a href="mailto:hello@hansribbonbouquet.com">hello@hansribbonbouquet.com</a></p>
           <p>(555) BOUQUET</p>
           <p style={{marginTop:'0.5rem'}}>123 Floral Lane,<br/>Anytown, USA</p>
+        </div>
+        <div>
+          <h5>Send us a Message</h5>
+          <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',gap:'0.75rem',marginTop:'0.5rem'}}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              style={{
+                padding:'0.75rem',
+                background:'rgba(255,255,255,0.08)',
+                border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'8px',
+                color:'white',
+                fontSize:'0.85rem',
+                outline:'none',
+                transition:'all 0.2s'
+              }}
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              style={{
+                padding:'0.75rem',
+                background:'rgba(255,255,255,0.08)',
+                border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'8px',
+                color:'white',
+                fontSize:'0.85rem',
+                outline:'none',
+                transition:'all 0.2s'
+              }}
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              rows="3"
+              required
+              style={{
+                padding:'0.75rem',
+                background:'rgba(255,255,255,0.08)',
+                border:'1px solid rgba(255,255,255,0.15)',
+                borderRadius:'8px',
+                color:'white',
+                fontSize:'0.85rem',
+                outline:'none',
+                resize:'vertical',
+                transition:'all 0.2s'
+              }}
+            />
+            <button
+              type="submit"
+              disabled={formStatus === 'sending'}
+              style={{
+                padding:'0.75rem',
+                background: formStatus === 'success' ? '#22c55e' : 'var(--pink)',
+                color:'white',
+                border:'none',
+                borderRadius:'8px',
+                fontSize:'0.8rem',
+                letterSpacing:'0.1em',
+                textTransform:'uppercase',
+                fontWeight:600,
+                cursor: formStatus === 'sending' ? 'wait' : 'pointer',
+                transition:'all 0.3s'
+              }}
+            >
+              {formStatus === 'sending' ? 'Sending...' : formStatus === 'success' ? 'Sent!' : 'Send Message'}
+            </button>
+            {formStatus === 'error' && (
+              <p style={{color:'#ef4444',fontSize:'0.8rem',margin:0}}>Failed to send. Please try again.</p>
+            )}
+          </form>
         </div>
         <div>
           <h5>Connect</h5>
