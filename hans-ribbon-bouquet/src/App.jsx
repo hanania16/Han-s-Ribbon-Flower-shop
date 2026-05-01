@@ -25,11 +25,11 @@ function App() {
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
-  useEffect(() => {
-    window.updateCart = (count) => {
-      // This is handled by local state now
-    };
-  }, []);
+   useEffect(() => {
+     window.updateCart = () => {
+       // This is handled by local state now
+     };
+   }, []);
 
   useEffect(() => {
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
@@ -59,8 +59,8 @@ function App() {
       <Hero />
       <FeaturedProducts setCartItems={setCartItems} />
       <Gallery openModal={() => setModalOpen(true)} />
-      <About />
       <AIAdvisor />
+      <About />
       <CTABand />
       <Footer />
       <DesignModal 
