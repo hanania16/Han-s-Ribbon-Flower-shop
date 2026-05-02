@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import '../css/Header.css';
 
-export default function Header({ openModal, cartOpen, setCartOpen, cartCount, openAuth }) {
+export default function Header({ openModal, cartOpen, setCartOpen, cartCount, openAuth, currentUser, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileMenuRef = useRef(null);
 
@@ -32,10 +32,23 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <i className="fa-solid fa-paintbrush nav-btn-icon"></i>
             Design Yours
           </button>
-          <button className="nav-btn" onClick={openAuth}>
-            <i className="fa-solid fa-user nav-btn-icon"></i>
-            Login / Signup
-          </button>
+          {currentUser ? (
+            <div className="nav-user-area">
+              <span className="nav-user-name">
+                <i className="fa-solid fa-user"></i>
+                {currentUser.name.split(' ')[0]}
+              </span>
+              <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
+                <i className="fa-solid fa-right-from-bracket"></i>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button className="nav-btn" onClick={openAuth}>
+              <i className="fa-solid fa-user nav-btn-icon"></i>
+              Login / Signup
+            </button>
+          )}
           <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
             <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
             <span className="cart-badge" id="cartBadge">{cartCount}</span>
@@ -52,12 +65,25 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
         <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
         <a href="#featured" onClick={closeMobile}>Shop</a>
         <a href="#gallery" onClick={closeMobile}>Gallery</a>
-        <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
-          Login / Signup
-        </button>
         <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
         <a href="#about" onClick={closeMobile}>About</a>
         <a href="#contact" onClick={closeMobile}>Contact</a>
+        {currentUser ? (
+          <>
+            <div className="mobile-user-info">
+              Signed in as: {currentUser.name}
+            </div>
+            <button className="nav-btn mobile-menu-btn" onClick={() => { onLogout(); closeMobile(); }}>
+              <i className="fa-solid fa-right-from-bracket"></i>
+              Logout
+            </button>
+          </>
+        ) : (
+          <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
+            <i className="fa-solid fa-user"></i>
+            Login / Signup
+          </button>
+        )}
         <button className="nav-btn mobile-menu-btn" onClick={() => { openModal(); closeMobile(); }}>
           Design Your Own
         </button>

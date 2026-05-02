@@ -20,6 +20,7 @@ function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   const [cartItems, setCartItems] = useState([
     { id:1, name:'Blushing Romance', price:70.00, qty:1 },
     { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
@@ -27,11 +28,36 @@ function App() {
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
-   useEffect(() => {
-     window.updateCart = () => {
-       // This is handled by local state now
-     };
-   }, []);
+  useEffect(() => {
+    const savedUser = localStorage.getItem('ribbon_flower_current_user');
+    if (savedUser) {
+      try {
+        setCurrentUser(JSON.parse(savedUser));
+      } catch (e) {
+        localStorage.removeItem('ribbon_flower_current_user');
+      }
+    }
+
+    const handleUserLogin = (e) => {
+      setCurrentUser(e.detail);
+    };
+    const handleUserLogout = () => {
+      setCurrentUser(null);
+    };
+
+    window.addEventListener('userLogin', handleUserLogin);
+    window.addEventListener('userLogout', handleUserLogout);
+
+    return () => {
+      window.removeEventListener('userLogin', handleUserLogin);
+      window.removeEventListener('userLogout', handleUserLogout);
+    };
+  }, []);
+
+  useEffect(() => {
+    window.updateCart = () => {
+    };
+  }, []);
 
   useEffect(() => {
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger');
@@ -47,34 +73,69 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  const handleAuthRequired = (e) => {
+    if (!currentUser) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      setAuthModalOpen(true);
+      return false;
+    }
+    return true;
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('ribbon_flower_current_user');
+    setCurrentUser(null);
+    window.dispatchEvent(new CustomEvent('userLogout'));
+  };
+
   return (
     <>
       <Cursor />
       <PetalRain />
       <Toast />
       <Header 
-         openAuth={() => setAuthModalOpen(true)}
-        openModal={() => setModalOpen(true)} 
+        openAuth={() => setAuthModalOpen(true)}
+        openModal={() => {
+          if (handleAuthRequired()) {
+            setModalOpen(true);
+          }
+        }}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
         cartCount={cartCount}
+        currentUser={currentUser}
+        onLogout={handleLogout}
       />
       <Hero />
-      <FeaturedProducts setCartItems={setCartItems} />
-      <Gallery openModal={() => setModalOpen(true)} />
+      <FeaturedProducts 
+        setCartItems={setCartItems}
+        requireAuth={handleAuthRequired}
+      />
+      <Gallery 
+        openModal={() => {
+          if (handleAuthRequired()) {
+            setModalOpen(true);
+          }
+        }}
+        requireAuth={handleAuthRequired}
+      />
       <AIAdvisor />
       <About />
       <CTABand />
       <Footer />
       <DesignModal 
-        isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)} 
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
       />
       <Cart 
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
         cartItems={cartItems}
         setCartItems={setCartItems}
+        requireAuth={handleAuthRequired}
       />
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       <ScrollToTop />

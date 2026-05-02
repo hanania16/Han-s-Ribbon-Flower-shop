@@ -31,7 +31,7 @@ const products = [
   }
 ];
 
-export default function FeaturedProducts({ setCartItems }) {
+export default function FeaturedProducts({ setCartItems, requireAuth }) {
   const [filter, setFilter] = useState('all');
 
   const filters = [
@@ -43,6 +43,9 @@ export default function FeaturedProducts({ setCartItems }) {
   ];
 
   const addToCart = (product, btn) => {
+    if (requireAuth && !requireAuth()) {
+      return;
+    }
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {

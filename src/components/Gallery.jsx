@@ -12,7 +12,7 @@ const galleryItems = [
   { id: 8, image: 'https://placehold.co/400x400/f8bbd0/6d28d9?text=Past+Design+8', overlay: 'Twilight Garden ✿', styles: 'corporate,custom' }
 ];
 
-export default function Gallery({ openModal }) {
+export default function Gallery({ openModal, requireAuth }) {
   const [filter, setFilter] = useState('all');
 
   const filters = [
@@ -21,6 +21,13 @@ export default function Gallery({ openModal }) {
     { key: 'corporate', label: 'Corporate' },
     { key: 'custom', label: 'Custom' }
   ];
+
+  const handleCustomDesign = () => {
+    if (requireAuth && !requireAuth()) {
+      return;
+    }
+    openModal();
+  };
 
   return (
     <section id="gallery" className="gallery-bg">
@@ -61,7 +68,7 @@ export default function Gallery({ openModal }) {
         </div>
 
         <div className="center-btn reveal gallery-center-btn-margin">
-          <button className="outline-btn" onClick={openModal}>Start Your Custom Design</button>
+          <button className="outline-btn" onClick={handleCustomDesign}>Start Your Custom Design</button>
         </div>
       </div>
     </section>

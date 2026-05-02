@@ -5,12 +5,21 @@ const initialCartItems = [
   { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
 ];
 
-export default function Cart({ isOpen, onClose, cartItems, setCartItems }) {
+export default function Cart({ isOpen, onClose, cartItems, setCartItems, requireAuth }) {
   const removeItem = (id) => {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  const handleCheckout = () => {
+    if (requireAuth && !requireAuth()) {
+      return;
+    }
+    alert(`Proceeding to checkout!\n\nOrder total: $${subtotal.toFixed(2)}\n\nThank you for your order! 🌸`);
+    setCartItems([]);
+    onClose();
+  };
 
   return (
     <div className={`cart-dropdown ${isOpen ? 'open' : ''}`}>
@@ -40,7 +49,7 @@ export default function Cart({ isOpen, onClose, cartItems, setCartItems }) {
               <span>Subtotal</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="cart-checkout">Proceed to Checkout</button>
+            <button className="cart-checkout" onClick={handleCheckout}>Proceed to Checkout</button>
           </div>
         </>
       )}
