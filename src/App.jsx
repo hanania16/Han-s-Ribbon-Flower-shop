@@ -14,10 +14,12 @@ import DesignModal from './components/DesignModal';
 import Toast from './components/Toast';
 import ScrollToTop from './components/ScrollToTop';
 import Cart from './components/Cart';
+import AuthModal from './components/AuthModal';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const [cartItems, setCartItems] = useState([
     { id:1, name:'Blushing Romance', price:70.00, qty:1 },
     { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
@@ -51,6 +53,7 @@ function App() {
       <PetalRain />
       <Toast />
       <Header 
+         openAuth={() => setAuthModalOpen(true)}
         openModal={() => setModalOpen(true)} 
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
@@ -73,6 +76,7 @@ function App() {
         cartItems={cartItems}
         setCartItems={setCartItems}
       />
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
       <ScrollToTop />
     </>
   );

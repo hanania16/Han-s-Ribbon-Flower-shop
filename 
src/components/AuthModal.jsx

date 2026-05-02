@@ -1,0 +1,508 @@
+
+import { useState, useEffect, useRef } from 'react';
+
+  const [activeTab, setActiveTab] = useState('login');
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [signupName, setSignupName] = useState('');
+  const [signupEmail, setSignupEmail] = useState('');
+  const [signupPassword, setSignupPassword] = useState('');
+  const [signupConfirmPassword, setSignupConfirmPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [signupError, setSignupError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const modalRef = useRef(null);
+
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
+  const handleTabClick = (tab, e) => {
+    e.preventDefault();
+    setActiveTab(tab);
+    setLoginError('');
+    setSignupError('');
+    setSuccessMessage('');
+  };
+
+  const handleBackgroundClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoginError('');
+    
+    if (!loginEmail.trim() || !loginPassword.trim()) {
+      setLoginError('Please fill in all fields');
+      return;
+    }
+    
+    if (!validateEmail(loginEmail)) {
+      setLoginError('Please enter a valid email address');
+      return;
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const users = JSON.parse(localStorage.getItem('ribbon_flower_users') || '[]');
+      const user = users.find(u => u.email === loginEmail.trim());
+      
+      if (!user) {
+        setLoginError('No account found with this email. Please sign up first.');
+        setIsLoading(false);
+        return;
+      }
+      
+      if (user.password !== loginPassword) {
+        setLoginError('Incorrect password. Please try again.');
+        setIsLoading(false);
+        return;
+      }
+      
+      const userData = { ...user };
+      delete userData.password;
+      localStorage.setItem('ribbon_flower_current_user', JSON.stringify(userData));
+      
+      setSuccessMessage('Welcome back! Redirecting...');
+      
+      setTimeout(() => {
+        onClose();
+        window.dispatchEvent(new CustomEvent('userLogin', { detail: userData }));
+      }, 800);
+    } catch (err) {
+      setLoginError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setSignupError('');
+    
+    if (!signupName.trim() || !signupEmail.trim() || !signupPassword.trim() || !signupConfirmPassword.trim()) {
+      setSignupError('Please fill in all fields');
+      return;
+    }
+    
+    if (!validateEmail(signupEmail)) {
+      setSignupError('Please enter a valid email address');
+      return;
+    }
+    
+    if (signupPassword.length < 6) {
+      setSignupError('Password must be at least 6 characters long');
+      return;
+    }
+    
+    if (signupPassword !== signupConfirmPassword) {
+      setSignupError('Passwords do not match');
+      return;
+    }
+    
+    setIsLoading(true);
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const users = JSON.parse(localStorage.getItem('ribbon_flower_users') || '[]');
+      
+      if (users.some(u => u.email === signupEmail.trim())) {
+        setSignupError('An account with this email already exists. Please login instead.');
+        setIsLoading(false);
+        return;
+      }
+      
+      const newUser = {
+        id: Date.now(),
+        name: signupName.trim(),
+        email: signupEmail.trim(),
+        password: signupPassword,
+        createdAt: new Date().toISOString()
+      };
+      
+      users.push(newUser);
+      localStorage.setItem('ribbon_flower_users', JSON.stringify(users));
+      
+      const userData = { ...newUser };
+      delete userData.password;
+      localStorage.setItem('ribbon_flower_current_user', JSON.stringify(userData));
+      
+      setSuccessMessage('Account created successfully!');
+      
+      setTimeout(() => {
+        onClose();
+        window.dispatchEvent(new CustomEvent('userLogin', { detail: userData }));
+      }, 800);
+    } catch (err) {
+      setSignupError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="modal-overlay open" onClick={handleBackgroundClick} ref={modalRef}>
+      <div className="modal-box" style={{ maxWidth: '480px' }}>
+        <button className="modal-close" onClick={onClose} aria-label="Close modal">
+          <i className="fa-solid fa-xmark"></i>
+        </button>
+        
+        <h2 className="modal-title" style={{ textAlign: 'center' }}>
+          {activeTab === 'login' ? 'Welcome Back' : 'Create Account'}
+        </h2>
+        
+        <div style={{
+          display: 'flex',
+          borderBottom: '1px solid #f5dde6',
+          marginBottom: '2rem'
+        }}>
+          <button
+            onClick={(e) => handleTabClick('login', e)}
+            style={{
+              flex: 1,
+              padding: '1rem',
+              border: 'none',
+              background: 'transparent',
+              color: activeTab === 'login' ? '#e91e63' : '#8a6070',
+              fontSize: '0.9rem',
+              letterSpacing: '0.08em',
+              fontFamily: 'Lato, sans-serif',
+              fontWeight: activeTab === 'login' ? 700 : 400,
+              cursor: 'pointer',
+              transition: 'color 0.2s',
+              position: 'relative'
+            }}
+          >
+            Sign In
+            {activeTab === 'login' && (
+              <span style={{
+                position: 'absolute',
+                bottom: '-1px',
+                left: 0,
+                right: 0,
+                height: '2px',
+                background: '#e91e63',
+                borderRadius: '2px 2px 0 0'
+              }}></span>
+            )}
+          </button>
+          <button
+            onClick={(e) => handleTabClick('signup', e)}
+            style={{
+              flex: 1,
+              padding: '1rem',
+              border: 'none',
+              background: 'transparent',
+              color: activeTab === 'signup' ? '#e91e63' : '#8a6070',
+              fontSize: '0.9rem',
+              letterSpacing: '0.08em',
+              fontFamily: 'Lato, sans-serif',
+              fontWeight: activeTab === 'signup' ? 700 : 400,
+              cursor: 'pointer',
+              transition: 'color 0.2s',
+              position: 'relative'
+            }}
+          >
+            Sign Up
+            {activeTab === 'signup' && (
+              <span style={{
+                position: 'absolute',
+                bottom: '-1px',
+                left: 0,
+                right: 0,
+                height: '2px',
+                background: '#e91e63',
+                borderRadius: '2px 2px 0 0'
+              }}></span>
+            )}
+          </button>
+        </div>
+        
+        {successMessage ? (
+          <div style={{
+            textAlign: 'center',
+            padding: '2rem 1rem',
+            color: '#c2185b',
+            fontSize: '0.95rem'
+          }}>
+            <i className="fa-solid fa-circle-check" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+            {successMessage}
+          </div>
+        ) : (
+          <form onSubmit={activeTab === 'login' ? handleLogin : handleSignup} ref={activeTab === 'login' ? loginFormRef : signupFormRef}>
+            {activeTab === 'signup' && (
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '0.82rem',
+                  color: '#6b4055',
+                  marginBottom: '0.5rem',
+                  letterSpacing: '0.04em'
+                }}>
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  value={signupName}
+                  onChange={(e) => {
+                    setSignupName(e.target.value);
+                    setSignupError('');
+                  }}
+                  placeholder="Enter your full name"
+                  style={{
+                    width: '100%',
+                    border: '1.5px solid var(--blush, #f8bbd0)',
+                    borderRadius: '10px',
+                    padding: '0.75rem 1rem',
+                    fontFamily: 'Lato, sans-serif',
+                    fontSize: '0.9rem',
+                    color: '#3a1a2e',
+                    background: 'white',
+                    outline: 'none',
+                    transition: 'border-color 0.3s'
+                  }}
+                  required
+                />
+              </div>
+            )}
+            
+            <div style={{ marginBottom: '1rem' }}>
+              <label style={{
+                display: 'block',
+                fontSize: '0.82rem',
+                color: '#6b4055',
+                marginBottom: '0.5rem',
+                letterSpacing: '0.04em'
+              }}>
+                Email Address
+              </label>
+              <input
+                type="email"
+                value={activeTab === 'login' ? loginEmail : signupEmail}
+                onChange={(e) => {
+                  if (activeTab === 'login') {
+                    setLoginEmail(e.target.value);
+                    setLoginError('');
+                  } else {
+                    setSignupEmail(e.target.value);
+                    setSignupError('');
+                  }
+                }}
+                placeholder="Enter your email"
+                style={{
+                  width: '100%',
+                  border: '1.5px solid var(--blush, #f8bbd0)',
+                  borderRadius: '10px',
+                  padding: '0.75rem 1rem',
+                  fontFamily: 'Lato, sans-serif',
+                  fontSize: '0.9rem',
+                  color: '#3a1a2e',
+                  background: 'white',
+                  outline: 'none',
+                  transition: 'border-color 0.3s'
+                }}
+                required
+              />
+            </div>
+            
+            <div style={{ marginBottom: '1.25rem' }}>
+              <label style={{
+                display: 'block',
+                fontSize: '0.82rem',
+                color: '#6b4055',
+                marginBottom: '0.5rem',
+                letterSpacing: '0.04em'
+              }}>
+                Password
+              </label>
+              <input
+                type="password"
+                value={activeTab === 'login' ? loginPassword : signupPassword}
+                onChange={(e) => {
+                  if (activeTab === 'login') {
+                    setLoginPassword(e.target.value);
+                    setLoginError('');
+                  } else {
+                    setSignupPassword(e.target.value);
+                    setSignupError('');
+                  }
+                }}
+                placeholder="Enter your password"
+                style={{
+                  width: '100%',
+                  border: '1.5px solid var(--blush, #f8bbd0)',
+                  borderRadius: '10px',
+                  padding: '0.75rem 1rem',
+                  fontFamily: 'Lato, sans-serif',
+                  fontSize: '0.9rem',
+                  color: '#3a1a2e',
+                  background: 'white',
+                  outline: 'none',
+                  transition: 'border-color 0.3s'
+                }}
+                required
+              />
+              {activeTab === 'signup' && (
+                <p style={{
+                  fontSize: '0.72rem',
+                  color: '#8a6070',
+                  marginTop: '0.3rem',
+                  marginBottom: '0'
+                }}>
+                  Minimum 6 characters
+                </p>
+              )}
+            </div>
+            
+            {activeTab === 'signup' && (
+              <div style={{ marginBottom: '1.25rem' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '0.82rem',
+                  color: '#6b4055',
+                  marginBottom: '0.5rem',
+                  letterSpacing: '0.04em'
+                }}>
+                  Confirm Password
+                </label>
+                <input
+                  type="password"
+                  value={signupConfirmPassword}
+                  onChange={(e) => {
+                    setSignupConfirmPassword(e.target.value);
+                    setSignupError('');
+                  }}
+                  placeholder="Confirm your password"
+                  style={{
+                    width: '100%',
+                    border: '1.5px solid var(--blush, #f8bbd0)',
+                    borderRadius: '10px',
+                    padding: '0.75rem 1rem',
+                    fontFamily: 'Lato, sans-serif',
+                    fontSize: '0.9rem',
+                    color: '#3a1a2e',
+                    background: 'white',
+                    outline: 'none',
+                    transition: 'border-color 0.3s'
+                  }}
+                  required
+                />
+              </div>
+            )}
+            
+            {(loginError || signupError) && (
+              <div style={{
+                background: '#fff5f8',
+                border: '1px solid #f8bbd0',
+                borderRadius: '10px',
+                padding: '0.85rem',
+                marginBottom: '1rem',
+                color: '#c2185b',
+                fontSize: '0.85rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                <i className="fa-solid fa-circle-exclamation"></i>
+                {loginError || signupError}
+              </div>
+            )}
+            
+            <button
+              type="submit"
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '0.95rem',
+                background: 'linear-gradient(135deg, var(--pink, #e91e63), var(--rose, #c2185b))',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50px',
+                fontFamily: 'Lato, sans-serif',
+                fontSize: '0.85rem',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                cursor: isLoading ? 'not-allowed' : 'pointer',
+                transition: 'all 0.3s',
+                opacity: isLoading ? 0.7 : 1
+              }}
+            >
+              {isLoading ? (
+                <span>
+                  <i className="fa-solid fa-spinner fa-spin"></i>
+                  {' Processing...'}
+                </span>
+              ) : (
+                activeTab === 'login' ? 'Sign In' : 'Create Account'
+              )}
+            </button>
+          </form>
+        )}
+        
+        <p style={{
+          textAlign: 'center',
+          fontSize: '0.82rem',
+          color: '#8a6070',
+          marginTop: '1.25rem'
+        }}>
+          {activeTab === 'login' ? (
+            <>Don't have an account?{' '}
+              <a
+                href="#signup"
+                onClick={(e) => handleTabClick('signup', e)}
+                style={{
+                  color: '#e91e63',
+                  textDecoration: 'none',
+                  fontWeight: 600
+                }}
+              >
+                Sign up
+              </a>
+            </>
+          ) : (
+            <>Already have an account?{' '}
+              <a
+                href="#login"
+                onClick={(e) => handleTabClick('login', e)}
+                style={{
+                  color: '#e91e63',
+                  textDecoration: 'none',
+                  fontWeight: 600
+                }}
+              >
+                Sign in
+              </a>
+            </>
+          )}
+        </p>
+      </div>
+    </div>
+  );
+}

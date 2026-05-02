@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import '../css/Header.css';
 
-export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) {
+export default function Header({ openModal, cartOpen, setCartOpen, cartCount, openAuth }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileMenuRef = useRef(null);
 
@@ -32,6 +32,10 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
             <i className="fa-solid fa-paintbrush nav-btn-icon"></i>
             Design Yours
           </button>
+          <button className="nav-btn" onClick={openAuth}>
+            <i className="fa-solid fa-user nav-btn-icon"></i>
+            Login / Signup
+          </button>
           <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
             <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
             <span className="cart-badge" id="cartBadge">{cartCount}</span>
@@ -48,6 +52,9 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount }) 
         <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
         <a href="#featured" onClick={closeMobile}>Shop</a>
         <a href="#gallery" onClick={closeMobile}>Gallery</a>
+        <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
+          Login / Signup
+        </button>
         <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
         <a href="#about" onClick={closeMobile}>About</a>
         <a href="#contact" onClick={closeMobile}>Contact</a>
