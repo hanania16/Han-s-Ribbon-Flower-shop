@@ -33,7 +33,7 @@ function App() {
     if (savedUser) {
       try {
         setCurrentUser(JSON.parse(savedUser));
-      } catch (e) {
+      } catch {
         localStorage.removeItem('ribbon_flower_current_user');
       }
     }
