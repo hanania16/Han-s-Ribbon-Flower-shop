@@ -15,12 +15,14 @@ import Toast from './components/Toast';
 import ScrollToTop from './components/ScrollToTop';
 import Cart from './components/Cart';
 import AuthModal from './components/AuthModal';
+import Admin from './components/Admin';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [adminView, setAdminView] = useState(false);
   const [cartItems, setCartItems] = useState([
     { id:1, name:'Blushing Romance', price:70.00, qty:1 },
     { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
@@ -103,6 +105,7 @@ function App() {
             setModalOpen(true);
           }
         }}
+        openAdmin={() => setAdminView(true)}
         cartOpen={cartOpen}
         setCartOpen={setCartOpen}
         cartCount={cartCount}
@@ -138,6 +141,9 @@ function App() {
         requireAuth={handleAuthRequired}
       />
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
+      {adminView && currentUser && (
+        <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
+      )}
       <ScrollToTop />
     </>
   );

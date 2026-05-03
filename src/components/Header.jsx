@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import '../css/Header.css';
 
-export default function Header({ openModal, cartOpen, setCartOpen, cartCount, openAuth, currentUser, onLogout }) {
+export default function Header({ openModal, cartOpen, setCartOpen, cartCount, openAuth, currentUser, onLogout, openAdmin }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const mobileMenuRef = useRef(null);
 
@@ -32,18 +32,22 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <i className="fa-solid fa-paintbrush nav-btn-icon"></i>
             Design Yours
           </button>
-          {currentUser ? (
-            <div className="nav-user-area">
-              <span className="nav-user-name">
-                <i className="fa-solid fa-user"></i>
-                {currentUser.name.split(' ')[0]}
-              </span>
-              <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
-                <i className="fa-solid fa-right-from-bracket"></i>
-                Logout
-              </button>
-            </div>
-          ) : (
+            {currentUser ? (
+              <div className="nav-user-area">
+                <span className="nav-user-name">
+                  <i className="fa-solid fa-user"></i>
+                  {currentUser.name.split(' ')[0]}
+                </span>
+                <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ marginLeft: '0.5rem', background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
+                  <i className="fa-solid fa-shield-halved nav-btn-icon"></i>
+                  Admin
+                </button>
+                <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
+                  <i className="fa-solid fa-right-from-bracket"></i>
+                  Logout
+                </button>
+              </div>
+            ) : (
             <button className="nav-btn" onClick={openAuth}>
               <i className="fa-solid fa-user nav-btn-icon"></i>
               Login / Signup
@@ -73,6 +77,10 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <div className="mobile-user-info">
               Signed in as: {currentUser.name}
             </div>
+            <button className="nav-btn mobile-menu-btn" onClick={() => { openAdmin && openAdmin(); closeMobile(); }}>
+              <i className="fa-solid fa-shield-halved"></i>
+              Admin Panel
+            </button>
             <button className="nav-btn mobile-menu-btn" onClick={() => { onLogout(); closeMobile(); }}>
               <i className="fa-solid fa-right-from-bracket"></i>
               Logout

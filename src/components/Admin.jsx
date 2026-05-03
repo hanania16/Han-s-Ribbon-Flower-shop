@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import './css/Admin.css';
+import { useState } from 'react';
+import '../css/Admin.css';
 
 const Admin = ({ currentUser, onClose }) => {
   const [activeTab, setActiveTab] = useState('products');
