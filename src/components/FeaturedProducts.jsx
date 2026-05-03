@@ -43,6 +43,7 @@ export default function FeaturedProducts({ setCartItems, requireAuth }) {
   ];
 
   const addToCart = (product, btn) => {
+    // If requireAuth is provided, check authentication. If not logged in, it will open the auth modal and return early.
     if (requireAuth && !requireAuth()) {
       return;
     }
@@ -119,7 +120,7 @@ export default function FeaturedProducts({ setCartItems, requireAuth }) {
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
                 <div className="product-price">${product.price.toFixed(2)}</div>
-                <button className="add-btn" onClick={(e) => addToCart(product, e.target)}>Add to Order</button>
+                 <button type="button" className="add-btn" onClick={(e) => addToCart(product, e.target)}>Add to Order</button>
               </div>
             </div>
           ))}

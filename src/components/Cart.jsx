@@ -13,6 +13,7 @@ export default function Cart({ isOpen, onClose, cartItems, setCartItems, require
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
   const handleCheckout = () => {
+    // If requireAuth is provided, check authentication. If not logged in, it will open the auth modal and return early.
     if (requireAuth && !requireAuth()) {
       return;
     }
@@ -49,7 +50,7 @@ export default function Cart({ isOpen, onClose, cartItems, setCartItems, require
               <span>Subtotal</span>
               <span>${subtotal.toFixed(2)}</span>
             </div>
-            <button className="cart-checkout" onClick={handleCheckout}>Proceed to Checkout</button>
+            <button type="button" className="cart-checkout" onClick={handleCheckout}>Proceed to Checkout</button>
           </div>
         </>
       )}

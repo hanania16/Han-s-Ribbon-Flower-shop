@@ -23,6 +23,7 @@ export default function Gallery({ openModal, requireAuth }) {
   ];
 
   const handleCustomDesign = () => {
+    // If requireAuth is provided, check authentication. If not logged in, it will open the auth modal and return early.
     if (requireAuth && !requireAuth()) {
       return;
     }
@@ -68,7 +69,7 @@ export default function Gallery({ openModal, requireAuth }) {
         </div>
 
         <div className="center-btn reveal gallery-center-btn-margin">
-          <button className="outline-btn" onClick={handleCustomDesign}>Start Your Custom Design</button>
+          <button type="button" className="outline-btn" onClick={handleCustomDesign}>Start Your Custom Design</button>
         </div>
       </div>
     </section>
