@@ -15,7 +15,7 @@
 }
 
 .user-modal {
-  background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+  background: linear-gradient(135deg, #fff5f8 0%, #f8e8f0 100%);
   border-radius: 20px;
   width: 100%;
   max-width: 800px;
@@ -33,7 +33,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #1976d2;
+  color: #e91e63;
   cursor: pointer;
   width: 40px;
   height: 40px;
@@ -45,13 +45,13 @@
 }
 
 .user-close:hover {
-  background: rgba(25, 118, 210, 0.1);
+  background: rgba(233, 30, 99, 0.1);
   transform: rotate(90deg);
 }
 
 .user-title {
   text-align: center;
-  color: #1976d2;
+  color: #e91e63;
   font-size: 2.5rem;
   margin: 20px 0 10px;
   font-weight: 700;
@@ -60,7 +60,7 @@
 
 .user-subtitle {
   text-align: center;
-  color: #424242;
+  color: #8a6070;
   font-size: 1.1rem;
   margin-bottom: 30px;
   font-family: 'Lato', sans-serif;
@@ -70,7 +70,7 @@
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
-  border-bottom: 2px solid #bbdefb;
+  border-bottom: 2px solid #f8bbd0;
   padding-bottom: 10px;
 }
 
@@ -79,7 +79,7 @@
   padding: 12px 20px;
   border: none;
   background: transparent;
-  color: #607d8b;
+  color: #8a6070;
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
@@ -91,12 +91,12 @@
 }
 
 .user-tab:hover {
-  background: rgba(25, 118, 210, 0.1);
-  color: #1976d2;
+  background: rgba(233, 30, 99, 0.1);
+  color: #e91e63;
 }
 
 .user-tab.active {
-  background: #1976d2;
+  background: #e91e63;
   color: white;
   font-weight: 700;
 }
@@ -106,11 +106,11 @@
 }
 
 .user-section h2 {
-  color: #1565c0;
+  color: #c2185b;
   font-size: 1.8rem;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid #bbdefb;
+  border-bottom: 2px solid #f8bbd0;
 }
 
 .user-info {
@@ -132,16 +132,16 @@
 
 .info-item i {
   font-size: 1.2rem;
-  color: #1976d2;
+  color: #e91e63;
   width: 24px;
 }
 
 .user-btn-outline {
   display: inline-block;
   padding: 12px 24px;
-  border: 2px solid #1976d2;
+  border: 2px solid #e91e63;
   background: transparent;
-  color: #1976d2;
+  color: #e91e63;
   border-radius: 50px;
   font-family: 'Lato', sans-serif;
   font-size: 0.9rem;
@@ -153,14 +153,14 @@
 }
 
 .user-btn-outline:hover {
-  background: rgba(25, 118, 210, 0.1);
+  background: rgba(233, 30, 99, 0.1);
   transform: translateY(-2px);
 }
 
 .user-btn-primary {
   display: inline-block;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #1976d2, #1565c0);
+  background: linear-gradient(135deg, #e91e63, #c2185b);
   color: white;
   border: none;
   border-radius: 50px;
@@ -175,7 +175,7 @@
 
 .user-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(25, 118, 210, 0.3);
+  box-shadow: 0 10px 20px rgba(233, 30, 99, 0.3);
 }
 
 .orders-list {
@@ -201,11 +201,11 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: #e3f2fd;
+  background: #f8e8f0;
 }
 
 .order-header h3 {
-  color: #1565c0;
+  color: #c2185b;
   margin: 0;
   font-size: 1.2rem;
 }
@@ -234,13 +234,13 @@
 }
 
 .status-shipped {
-  background: #bbdefb;
-  color: #1565c0;
+  background: #f8bbd0;
+  color: #c2185b;
 }
 
 .order-date {
   padding: 0 20px 20px;
-  color: #607d8b;
+  color: #8a6070;
 }
 
 .order-items {
@@ -275,7 +275,7 @@
 .user-orders-empty, .user-cart-empty, .user-wishlist-empty {
   text-align: center;
   padding: 60px 20px;
-  color: #607d8b;
+  color: #8a6070;
   background: white;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -283,7 +283,7 @@
 
 .user-orders-empty i, .user-cart-empty i, .user-wishlist-empty i {
   font-size: 4rem;
-  color: #bbdefb;
+  color: #f8bbd0;
   margin-bottom: 20px;
 }
 
@@ -325,7 +325,7 @@
 }
 
 .cart-item-info p {
-  color: #1976d2;
+  color: #e91e63;
   font-weight: 700;
   margin: 5px 0;
 }
@@ -340,16 +340,16 @@
   width: 30px;
   height: 30px;
   border: none;
-  background: #e3f2fd;
+  background: #f8bbd0;
   border-radius: 50%;
-  color: #1976d2;
+  color: #c2185b;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .item-quantity button:hover {
-  background: #bbdefb;
+  background: #f8bdd8;
   transform: scale(1.1);
 }
 
@@ -372,12 +372,11 @@
 .summary-row.total {
   font-weight: 700;
   font-size: 1.2rem;
-  border-top: 2px solid #1976d2;
+  border-top: 2px solid #e91e63;
   margin-top: 10px;
   padding-top: 15px;
 }
 
-/* Wishlist Styles */
 .user-wishlist-empty button {
   margin-top: 15px;
 }

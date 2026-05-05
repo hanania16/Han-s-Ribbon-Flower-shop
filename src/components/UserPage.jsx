@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../css/UserPage.css';
 
 const UserPage = ({ currentUser, onClose }) => {
@@ -40,6 +40,7 @@ const UserPage = ({ currentUser, onClose }) => {
           <i className="fa-solid fa-xmark"></i>
         </button>
          
+        <div className="section-label">— Profile —</div>
         <h1 className="user-title">Welcome Back, {currentUser.name}</h1>
         <p className="user-subtitle">Your personal flower shop dashboard</p>
          
