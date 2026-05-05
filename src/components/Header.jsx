@@ -32,27 +32,29 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <i className="fa-solid fa-paintbrush nav-btn-icon"></i>
             Design Yours
           </button>
-         {currentUser ? (
-               <div className="nav-user-area">
-                 <button className="nav-user-name" onClick={() => openUser && openUser()}>
-                   <i className="fa-solid fa-user"></i>
-                   {currentUser.name.split(' ')[0]}
-                 </button>
-                 <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ marginLeft: '0.5rem', background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
-                   <i className="fa-solid fa-shield-halved nav-btn-icon"></i>
-                   Admin
-                 </button>
-                 <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
-                   <i className="fa-solid fa-right-from-bracket"></i>
-                   Logout
-                 </button>
-               </div>
-             ) : (
-               <button className="nav-btn" onClick={openAuth}>
-                 <i className="fa-solid fa-user nav-btn-icon"></i>
-                 Login / Signup
-               </button>
-             )}
+          {currentUser ? (
+                <div className="nav-user-area">
+                  <button className="nav-user-name" onClick={() => openUser && openUser()}>
+                    <i className="fa-solid fa-user"></i>
+                    {currentUser.name.split(' ')[0]}
+                  </button>
+                  {currentUser.role === 'admin' && (
+                    <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ marginLeft: '0.5rem', background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
+                      <i className="fa-solid fa-shield-halved nav-btn-icon"></i>
+                      Admin
+                    </button>
+                  )}
+                  <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
+                    <i className="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button className="nav-btn" onClick={openAuth}>
+                  <i className="fa-solid fa-user nav-btn-icon"></i>
+                  Login / Signup
+                </button>
+              )}
           <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
             <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
             <span className="cart-badge" id="cartBadge">{cartCount}</span>
@@ -72,30 +74,32 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
         <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
         <a href="#about" onClick={closeMobile}>About</a>
         <a href="#contact" onClick={closeMobile}>Contact</a>
-         {currentUser ? (
-           <>
-             <div className="mobile-user-info">
-               Signed in as: {currentUser.name}
-             </div>
-             <button className="nav-btn mobile-menu-btn" onClick={() => { openAdmin && openAdmin(); closeMobile(); }}>
-               <i className="fa-solid fa-shield-halved"></i>
-               Admin Panel
-             </button>
-             <button className="nav-btn mobile-menu-btn" onClick={() => { openUser && openUser(); closeMobile(); }}>
-               <i className="fa-solid fa-user"></i>
-               User Profile
-             </button>
-             <button className="nav-btn mobile-menu-btn" onClick={() => { onLogout(); closeMobile(); }}>
-               <i className="fa-solid fa-right-from-bracket"></i>
-               Logout
-             </button>
-           </>
-         ) : (
-           <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
-             <i className="fa-solid fa-user"></i>
-             Login / Signup
-           </button>
-         )}
+          {currentUser ? (
+            <>
+              <div className="mobile-user-info">
+                Signed in as: {currentUser.name}
+              </div>
+              {currentUser.role === 'admin' && (
+                <button className="nav-btn mobile-menu-btn" onClick={() => { openAdmin && openAdmin(); closeMobile(); }}>
+                  <i className="fa-solid fa-shield-halved"></i>
+                  Admin Panel
+                </button>
+              )}
+              <button className="nav-btn mobile-menu-btn" onClick={() => { openUser && openUser(); closeMobile(); }}>
+                <i className="fa-solid fa-user"></i>
+                User Profile
+              </button>
+              <button className="nav-btn mobile-menu-btn" onClick={() => { onLogout(); closeMobile(); }}>
+                <i className="fa-solid fa-right-from-bracket"></i>
+                Logout
+              </button>
+            </>
+          ) : (
+            <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
+              <i className="fa-solid fa-user"></i>
+              Login / Signup
+            </button>
+          )}
         <button className="nav-btn mobile-menu-btn" onClick={() => { openModal(); closeMobile(); }}>
           Design Your Own
         </button>

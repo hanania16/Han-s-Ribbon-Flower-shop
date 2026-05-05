@@ -7,11 +7,6 @@ const Admin = ({ currentUser, onClose }) => {
     onClose(); // Close admin panel if user is not admin
     return null;
   }
-  // Check if user has admin role, redirect if not
-  if (!currentUser || currentUser.role !== 'admin') {
-    onClose(); // Close admin panel if user is not admin
-    return null;
-  }
   
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([
