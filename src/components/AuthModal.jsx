@@ -152,13 +152,14 @@ export default function AuthModal({ isOpen, onClose }) {
         return;
       }
 
-      const newUser = {
-        id: Date.now(),
-        name: signupName.trim(),
-        email: signupEmail.trim(),
-        password: signupPassword,
-        createdAt: new Date().toISOString()
-      };
+       const newUser = {
+         id: Date.now(),
+         name: signupName.trim(),
+         email: signupEmail.trim(),
+         password: signupPassword,
+         role: 'customer', // Default role for new users
+         createdAt: new Date().toISOString()
+       };
 
       users.push(newUser);
       localStorage.setItem('ribbon_flower_users', JSON.stringify(users));

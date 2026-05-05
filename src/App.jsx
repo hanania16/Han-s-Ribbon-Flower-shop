@@ -16,6 +16,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Cart from './components/Cart';
 import AuthModal from './components/AuthModal';
 import Admin from './components/Admin';
+import UserPage from './components/UserPage';
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,6 +24,7 @@ function App() {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [adminView, setAdminView] = useState(false);
+  const [userView, setUserView] = useState(false);
   const [cartItems, setCartItems] = useState([
     { id:1, name:'Blushing Romance', price:70.00, qty:1 },
     { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
@@ -98,20 +100,21 @@ function App() {
       <Cursor />
       <PetalRain />
       <Toast />
-      <Header 
-        openAuth={() => setAuthModalOpen(true)}
-        openModal={() => {
-          if (handleAuthRequired()) {
-            setModalOpen(true);
-          }
-        }}
-        openAdmin={() => setAdminView(true)}
-        cartOpen={cartOpen}
-        setCartOpen={setCartOpen}
-        cartCount={cartCount}
-        currentUser={currentUser}
-        onLogout={handleLogout}
-      />
+       <Header 
+         openAuth={() => setAuthModalOpen(true)}
+         openModal={() => {
+           if (handleAuthRequired()) {
+             setModalOpen(true);
+           }
+         }}
+         openAdmin={() => setAdminView(true)}
+         openUser={() => setUserView(true)}
+         cartOpen={cartOpen}
+         setCartOpen={setCartOpen}
+         cartCount={cartCount}
+         currentUser={currentUser}
+         onLogout={handleLogout}
+       />
       <Hero />
       <FeaturedProducts 
         setCartItems={setCartItems}
@@ -141,9 +144,12 @@ function App() {
         requireAuth={handleAuthRequired}
       />
       <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
-      {adminView && currentUser && (
-        <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
-      )}
+       {adminView && currentUser && (
+         <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
+       )}
+       {userView && currentUser && (
+         <UserPage currentUser={currentUser} onClose={() => setUserView(false)} />
+       )}
       <ScrollToTop />
     </>
   );
