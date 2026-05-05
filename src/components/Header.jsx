@@ -34,9 +34,8 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
           </button>
           {currentUser ? (
                 <div className="nav-user-area">
-                  <button className="nav-user-name" onClick={() => openUser && openUser()}>
+                  <button className="nav-user-avatar" onClick={() => openUser && openUser()}>
                     <i className="fa-solid fa-user"></i>
-                    {currentUser.name.split(' ')[0]}
                   </button>
                   {currentUser.role === 'admin' && (
                     <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ marginLeft: '0.5rem', background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
