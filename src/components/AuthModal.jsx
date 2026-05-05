@@ -98,16 +98,23 @@ export default function AuthModal({ isOpen, onClose }) {
         return;
       }
 
-      const userData = { ...user };
-      delete userData.password;
-      localStorage.setItem('ribbon_flower_current_user', JSON.stringify(userData));
+       // Check for admin credentials
+       let finalUserData = { ...user };
+       delete finalUserData.password;
+       
+       // If username is "Admin" and password is "123", ensure admin role
+       if (user.name === "Admin" && loginPassword === "123") {
+         finalUserData.role = "admin";
+       }
+       
+       localStorage.setItem('ribbon_flower_current_user', JSON.stringify(finalUserData));
 
-      setSuccessMessage('Welcome back! Redirecting...');
+       setSuccessMessage('Welcome back! Redirecting...');
 
-      setTimeout(() => {
-        onClose();
-        window.dispatchEvent(new CustomEvent('userLogin', { detail: userData }));
-      }, 800);
+       setTimeout(() => {
+         onClose();
+         window.dispatchEvent(new CustomEvent('userLogin', { detail: finalUserData }));
+       }, 800);
     } catch {
       setLoginError('An error occurred. Please try again.');
     } finally {
@@ -152,14 +159,14 @@ export default function AuthModal({ isOpen, onClose }) {
         return;
       }
 
-       const newUser = {
-         id: Date.now(),
-         name: signupName.trim(),
-         email: signupEmail.trim(),
-         password: signupPassword,
-         role: 'customer', // Default role for new users
-         createdAt: new Date().toISOString()
-       };
+        const newUser = {
+          id: Date.now(),
+          name: signupName.trim(),
+          email: signupEmail.trim(),
+          password: signupPassword,
+          role: signupName.trim() === "Admin" && signupPassword === "123" ? 'admin' : 'customer', // Admin gets admin role, others get customer
+          createdAt: new Date().toISOString()
+        };
 
       users.push(newUser);
       localStorage.setItem('ribbon_flower_users', JSON.stringify(users));
