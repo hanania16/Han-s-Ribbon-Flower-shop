@@ -25,10 +25,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [adminView, setAdminView] = useState(false);
   const [userView, setUserView] = useState(false);
-  const [cartItems, setCartItems] = useState([
-    { id:1, name:'Blushing Romance', price:70.00, qty:1 },
-    { id:3, name:'Velvet Harmony', price:80.00, qty:1 }
-  ]);
+  const [cartItems, setCartItems] = useState([]);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
@@ -44,9 +41,15 @@ function App() {
 
     const handleUserLogin = (e) => {
       setCurrentUser(e.detail);
+      // Reset cart for new user login
+      setCartItems([]);
     };
     const handleUserLogout = () => {
+      localStorage.removeItem('ribbon_flower_current_user');
       setCurrentUser(null);
+      // Reset cart on logout
+      setCartItems([]);
+      window.dispatchEvent(new CustomEvent('userLogout'));
     };
 
     window.addEventListener('userLogin', handleUserLogin);
