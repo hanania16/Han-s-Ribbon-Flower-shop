@@ -40,10 +40,15 @@ const UserPage = ({ currentUser, onClose }) => {
           <i className="fa-solid fa-xmark"></i>
         </button>
          
+        <div className="user-avatar-wrap">
+          <div className="user-avatar">
+            <i className="fa-solid fa-user"></i>
+          </div>
+        </div>
         <div className="section-label">— Profile —</div>
-        <h1 className="user-title">Welcome Back, {currentUser.name}</h1>
+        <h1 className="user-title">Welcome Back</h1>
         <p className="user-subtitle">Your personal flower shop dashboard</p>
-         
+        
         <div className="user-tabs">
           <button 
             className={`user-tab ${activeTab === 'profile' ? 'active' : ''}`}
