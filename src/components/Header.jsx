@@ -33,31 +33,33 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             Design Yours
           </button>
           {currentUser ? (
-                <div className="nav-user-area">
-                  <button className="nav-user-avatar" onClick={() => openUser && openUser()}>
-                    <i className="fa-solid fa-user"></i>
-                  </button>
-                  {currentUser.role === 'admin' && (
-                    <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ marginLeft: '0.5rem', background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
-                      <i className="fa-solid fa-shield-halved nav-btn-icon"></i>
-                      Admin
-                    </button>
-                  )}
-                  <button className="nav-btn" onClick={onLogout} style={{ marginLeft: '0.5rem' }}>
-                    <i className="fa-solid fa-right-from-bracket"></i>
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <button className="nav-btn" onClick={openAuth}>
-                  <i className="fa-solid fa-user nav-btn-icon"></i>
-                  Login / Signup
+            <div className="nav-user-area">
+              {currentUser.role === 'admin' && (
+                <button className="nav-btn" onClick={() => openAdmin && openAdmin()} style={{ background: 'linear-gradient(135deg, #6a1b9a, #9c27b0)', color: 'white' }}>
+                  <i className="fa-solid fa-shield-halved nav-btn-icon"></i>
+                  Admin
                 </button>
               )}
+              <button className="nav-btn" onClick={onLogout}>
+                <i className="fa-solid fa-right-from-bracket"></i>
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button className="nav-btn" onClick={openAuth}>
+              <i className="fa-solid fa-user nav-btn-icon"></i>
+              Login / Signup
+            </button>
+          )}
           <button className="cart-btn" title="Cart" onClick={() => setCartOpen(!cartOpen)}>
             <img src="/cart-icon.png" alt="Cart" className="cart-icon-img" />
             <span className="cart-badge" id="cartBadge">{cartCount}</span>
           </button>
+          {currentUser && (
+            <button className="nav-user-avatar-corner" title="Profile" onClick={() => openUser && openUser()}>
+              <i className="fa-solid fa-user"></i>
+            </button>
+          )}
         </div>
 
         <button 
