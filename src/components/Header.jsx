@@ -67,17 +67,6 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
       </nav>
         <div className={`mobile-menu ${mobileOpen ? 'open' : ''}`} ref={mobileMenuRef}>
           <div className="mobile-menu-header">
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.5rem 0' }}>
-              <div className="mobile-cart-item" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
-                <img src="/cart-icon.png" alt="Cart" className="mobile-cart-img" />
-                <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
-              </div>
-              {currentUser && (
-                <button className="nav-user-avatar-corner" title="Profile" onClick={() => { openUser && openUser(); closeMobile(); }}>
-                  <i className="fa-solid fa-user"></i>
-                </button>
-              )}
-            </div>
             <a href="#featured" onClick={closeMobile}>Shop</a>
             <a href="#gallery" onClick={closeMobile}>Gallery</a>
             <a href="#advisor" onClick={closeMobile}>AI Advisor</a>
@@ -104,6 +93,17 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <button className="nav-btn mobile-menu-btn" onClick={() => { openModal(); closeMobile(); }}>
               Design Your Own
             </button>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', padding: '0.5rem 0' }}>
+              <div className="mobile-cart-item" onClick={() => { setCartOpen(!cartOpen); closeMobile(); }}>
+                <img src="/cart-icon.png" alt="Cart" className="mobile-cart-img" />
+                <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
+              </div>
+              {currentUser && (
+                <button className="nav-user-avatar-corner" title="Profile" onClick={() => { openUser && openUser(); closeMobile(); }}>
+                  <i className="fa-solid fa-user"></i>
+                </button>
+              )}
+            </div>
           </div>
         </div>
     </header>
