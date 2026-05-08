@@ -83,10 +83,6 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
                   Admin Panel
                 </button>
               )}
-              <button className="nav-btn mobile-menu-btn" onClick={() => { openUser && openUser(); closeMobile(); }}>
-                <i className="fa-solid fa-user"></i>
-                User Profile
-              </button>
             </>
           ) : (
             <button className="nav-btn mobile-menu-btn" onClick={() => { openAuth(); closeMobile(); }}>
