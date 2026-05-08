@@ -230,7 +230,6 @@ nav {
     gap: 0;
     background: white;
     border-top: 1px solid var(--mist);
-    padding: 0 2rem;
     box-shadow: 0 8px 30px rgba(0,0,0,0.08);
     max-height: 0;
     opacity: 0;
@@ -239,19 +238,31 @@ nav {
     pointer-events: none;
 }
 .mobile-menu.open {
-    max-height: 500px;
+    max-height: calc(90vh - 80px);
     opacity: 1;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     pointer-events: auto;
 }
-.mobile-menu a, .mobile-menu button {
+.mobile-menu-header,
+.mobile-menu-footer {
+    display: flex;
+    flex-direction: column;
+}
+.mobile-menu-header a,
+.mobile-menu-header button,
+.mobile-menu-footer a,
+.mobile-menu-footer button {
     padding: 0.75rem 0;
     border-bottom: 1px solid #fdf0f4;
     font-size: 0.95rem;
     color: #3a1a2e; text-decoration: none;
 }
-.mobile-menu .mobile-cart-item {
-    margin-top: 0.75rem;
+.mobile-menu-footer {
+    border-top: 1px solid #f5dde6;
+    padding-top: 0.5rem;
+}
+.mobile-menu-footer .mobile-cart-item {
+    margin: 0.5rem 0;
     position: relative;
     display: flex;
     align-items: center;
@@ -265,8 +276,11 @@ nav {
     margin-left: auto;
     margin-right: auto;
 }
-.mobile-menu .mobile-cart-item:hover {
+.mobile-menu-footer .mobile-cart-item:hover {
     background: transparent;
+}
+.mobile-menu-footer .nav-user-avatar-corner.mobile {
+    margin: 0.25rem 0 0;
 }
 .mobile-cart-img {
     width: 32px;
