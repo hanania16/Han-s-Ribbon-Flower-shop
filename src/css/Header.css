@@ -9,6 +9,7 @@
     margin-top: 0.5rem;
     width: 100%;
     border-radius: 10px;
+    justify-content: center;
 }
 
 /* User info in header */
