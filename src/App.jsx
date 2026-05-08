@@ -103,21 +103,20 @@ function App() {
       <Cursor />
       <PetalRain />
       <Toast />
-       <Header 
-         openAuth={() => setAuthModalOpen(true)}
-         openModal={() => {
-           if (handleAuthRequired()) {
-             setModalOpen(true);
-           }
-         }}
-         openAdmin={() => setAdminView(true)}
-         openUser={() => setUserView(true)}
-         cartOpen={cartOpen}
-         setCartOpen={setCartOpen}
-         cartCount={cartCount}
-         currentUser={currentUser}
-         onLogout={handleLogout}
-       />
+<Header 
+          openAuth={() => setAuthModalOpen(true)}
+          openModal={() => {
+            if (handleAuthRequired()) {
+              setModalOpen(true);
+            }
+          }}
+          openAdmin={() => setAdminView(true)}
+          openUser={() => setUserView(true)}
+          cartOpen={cartOpen}
+          setCartOpen={setCartOpen}
+          cartCount={cartCount}
+          currentUser={currentUser}
+        />
       <Hero />
       <FeaturedProducts 
         setCartItems={setCartItems}
@@ -150,9 +149,9 @@ function App() {
        {adminView && currentUser && (
          <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
        )}
-       {userView && currentUser && (
-         <UserPage currentUser={currentUser} onClose={() => setUserView(false)} />
-       )}
+{userView && currentUser && (
+          <UserPage currentUser={currentUser} onClose={() => setUserView(false)} onLogout={handleLogout} />
+        )}
       <ScrollToTop />
     </>
   );

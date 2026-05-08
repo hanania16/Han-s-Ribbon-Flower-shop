@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import '../css/UserPage.css';
 
-const UserPage = ({ currentUser, onClose }) => {
+const UserPage = ({ currentUser, onClose, onLogout }) => {
   // Check if user is logged in, redirect if not
   if (!currentUser) {
     onClose(); // Close panel if user is not logged in
@@ -82,26 +82,32 @@ const UserPage = ({ currentUser, onClose }) => {
             <div className="user-section">
               <h2>Profile Information</h2>
               
-              <div className="user-info">
-                <div className="info-item">
-                  <i className="fa-solid fa-user"></i>
-                  <span>{currentUser.name}</span>
-                </div>
-                <div className="info-item">
-                  <i className="fa-solid fa-envelope"></i>
-                  <span>{currentUser.email}</span>
-                </div>
-                <div className="info-item">
-                  <i className="fa-solid fa-phone"></i>
-                  <span>{currentUser.phone || 'Not provided'}</span>
-                </div>
-                <div className="info-item">
-                  <i className="fa-solid fa-cake"></i>
-                  <span>Member since: {new Date(currentUser.createdAt || Date.now()).toLocaleDateString()}</span>
-                </div>
-              </div>
-              
-              <button className="user-btn-outline">Edit Profile</button>
+<div className="user-info">
+                 <div className="info-item">
+                   <i className="fa-solid fa-user"></i>
+                   <span>{currentUser.name}</span>
+                 </div>
+                 <div className="info-item">
+                   <i className="fa-solid fa-envelope"></i>
+                   <span>{currentUser.email}</span>
+                 </div>
+                 <div className="info-item">
+                   <i className="fa-solid fa-phone"></i>
+                   <span>{currentUser.phone || 'Not provided'}</span>
+                 </div>
+                 <div className="info-item">
+                   <i className="fa-solid fa-cake"></i>
+                   <span>Member since: {new Date(currentUser.createdAt || Date.now()).toLocaleDateString()}</span>
+                 </div>
+               </div>
+               
+               <div className="profile-actions">
+                 <button className="user-btn-outline">Edit Profile</button>
+                 <button className="user-btn-logout" onClick={() => { onLogout(); onClose(); }}>
+                   <i className="fa-solid fa-right-from-bracket"></i>
+                   Logout
+                 </button>
+               </div>
             </div>
           )}
            

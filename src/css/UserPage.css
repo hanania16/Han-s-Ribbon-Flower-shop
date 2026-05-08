@@ -180,6 +180,39 @@
   transform: translateY(-2px);
 }
 
+.profile-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.user-btn-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: 2px solid #e91e63;
+  background: transparent;
+  color: #e91e63;
+  border-radius: 50px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.user-btn-logout:hover {
+  background: #e91e63;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.user-btn-logout i {
+  font-size: 0.9rem;
+}
+
 .user-btn-primary {
   display: inline-block;
   padding: 12px 24px;
