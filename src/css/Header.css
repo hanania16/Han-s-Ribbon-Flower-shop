@@ -124,3 +124,15 @@
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4);
 }
+.mobile-profile-btn {
+  position: relative;
+}
+.mobile-profile-btn .cart-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  font-size: 0.65rem;
+  z-index: 2;
+}

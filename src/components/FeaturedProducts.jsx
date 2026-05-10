@@ -61,6 +61,20 @@ export default function FeaturedProducts({ setCartItems, requireAuth }) {
     badge.style.animation = 'none';
     badge.offsetHeight;
     badge.style.animation = 'badgePop 0.3s ease';
+
+    const profileBadge = document.getElementById('cartBadge-profile');
+    if (profileBadge) {
+      profileBadge.style.animation = 'none';
+      profileBadge.offsetHeight;
+      profileBadge.style.animation = 'badgePop 0.3s ease';
+    }
+
+    const mobileBadge = document.getElementById('cartBadge-mobile');
+    if (mobileBadge) {
+      mobileBadge.style.animation = 'none';
+      mobileBadge.offsetHeight;
+      mobileBadge.style.animation = 'badgePop 0.3s ease';
+    }
     
     const orig = btn.textContent;
     btn.textContent = '✓ Added!';
