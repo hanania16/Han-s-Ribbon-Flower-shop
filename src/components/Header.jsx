@@ -74,9 +74,6 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
             <a href="#contact" onClick={closeMobile}>Contact</a>
             {currentUser ? (
               <>
-                <div className="mobile-user-info">
-                  Signed in as: {currentUser.name}
-                </div>
                 {currentUser.role === 'admin' && (
                   <button className="nav-btn mobile-menu-btn" onClick={() => { openAdmin && openAdmin(); closeMobile(); }}>
                     <i className="fa-solid fa-shield-halved"></i>
