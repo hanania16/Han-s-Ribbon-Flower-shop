@@ -101,12 +101,9 @@ export default function FeaturedProducts({ setCartItems, requireAuth, wishlistIt
       }
       return [...prev, product];
     });
-    
-    const orig = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+
     btn.classList.add('wish-btn-added');
     setTimeout(() => {
-      btn.innerHTML = orig;
       btn.classList.remove('wish-btn-added');
     }, 1200);
   };

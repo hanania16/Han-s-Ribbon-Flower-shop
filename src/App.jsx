@@ -26,7 +26,24 @@ function App() {
   const [adminView, setAdminView] = useState(false);
   const [userView, setUserView] = useState(false);
   const [cartItems, setCartItems] = useState([]);
-  const [wishlistItems, setWishlistItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState(() => {
+    // Load wishlist from localStorage on initial render
+    try {
+      const saved = localStorage.getItem('ribbon_flower_wishlist');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  // Persist wishlist to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('ribbon_flower_wishlist', JSON.stringify(wishlistItems));
+    } catch {
+      // Ignore storage errors
+    }
+  }, [wishlistItems]);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
