@@ -150,8 +150,8 @@ function App() {
          <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
        )}
 {userView && currentUser && (
-          <UserPage currentUser={currentUser} onClose={() => setUserView(false)} onLogout={handleLogout} />
-        )}
+           <UserPage currentUser={currentUser} onClose={() => setUserView(false)} onLogout={handleLogout} cartItems={cartItems} setCartItems={setCartItems} cartCount={cartCount} />
+         )}
       <ScrollToTop />
     </>
   );

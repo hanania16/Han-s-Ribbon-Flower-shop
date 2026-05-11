@@ -95,13 +95,12 @@ export default function Header({ openModal, cartOpen, setCartOpen, cartCount, op
                 <img src="/cart-icon.png" alt="Cart" className="mobile-cart-img" />
                 <span className="cart-badge" id="cartBadge-mobile">{cartCount}</span>
               </div>
-              {currentUser && (
-                <button className="nav-user-avatar-corner mobile-profile-btn" title="Profile" onClick={() => { openUser && openUser(); closeMobile(); }}>
-                  <i className="fa-solid fa-user"></i>
-                  <span className="cart-badge" id="cartBadge-profile">{cartCount}</span>
-                </button>
-              )}
-            </div>
+{currentUser && (
+                 <button className="nav-user-avatar-corner mobile-profile-btn" title="Profile" onClick={() => { openUser && openUser(); closeMobile(); }}>
+                   <i className="fa-solid fa-user"></i>
+                 </button>
+               )}
+             </div>
           </div>
         </div>
     </header>

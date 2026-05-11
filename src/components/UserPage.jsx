@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import '../css/UserPage.css';
 
-const UserPage = ({ currentUser, onClose, onLogout }) => {
+const UserPage = ({ currentUser, onClose, onLogout, cartItems, setCartItems, cartCount }) => {
   // Check if user is logged in, redirect if not
   if (!currentUser) {
     onClose(); // Close panel if user is not logged in
     return null;
   }
-   
+    
   const [activeTab, setActiveTab] = useState('profile');
   const [orders, setOrders] = useState([
     {
@@ -29,10 +29,8 @@ const UserPage = ({ currentUser, onClose, onLogout }) => {
       total: 110.00,
       status: 'Processing'
     }
-  ]);
-   
-  const [cartItems, setCartItems] = useState([]); // Would be synced with main app cart
-   
+]);
+  
   return (
     <div className="user-overlay open" onClick={onClose}>
       <div className="user-modal" onClick={e => e.stopPropagation()}>
@@ -66,7 +64,7 @@ const UserPage = ({ currentUser, onClose, onLogout }) => {
             className={`user-tab ${activeTab === 'cart' ? 'active' : ''}`}
             onClick={() => setActiveTab('cart')}
           >
-            Cart ({cartItems.reduce((sum, item) => sum + item.qty, 0)})
+            Cart ({cartCount})
           </button>
           <button 
             className={`user-tab ${activeTab === 'wishlist' ? 'active' : ''}`}
