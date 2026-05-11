@@ -7,3 +7,34 @@
 .add-btn-added {
     background: linear-gradient(135deg, #10b981, #059669) !important;
 }
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.wish-btn {
+    background: transparent;
+    border: 2px solid #e2e8f0;
+    color: #64748b;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wish-btn:hover {
+    border-color: #f43f5e;
+    color: #f43f5e;
+    transform: scale(1.05);
+}
+
+.wish-btn-added {
+    border-color: #f43f5e !important;
+    color: #f43f5e !important;
+}

@@ -26,6 +26,7 @@ function App() {
   const [adminView, setAdminView] = useState(false);
   const [userView, setUserView] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
@@ -118,10 +119,12 @@ function App() {
           currentUser={currentUser}
         />
       <Hero />
-      <FeaturedProducts 
-        setCartItems={setCartItems}
-        requireAuth={handleAuthRequired}
-      />
+<FeaturedProducts 
+          setCartItems={setCartItems}
+          requireAuth={handleAuthRequired}
+          wishlistItems={wishlistItems}
+          setWishlistItems={setWishlistItems}
+        />
       <Gallery 
         openModal={() => {
           if (handleAuthRequired()) {
@@ -150,8 +153,8 @@ function App() {
          <Admin currentUser={currentUser} onClose={() => setAdminView(false)} />
        )}
 {userView && currentUser && (
-           <UserPage currentUser={currentUser} onClose={() => setUserView(false)} onLogout={handleLogout} cartItems={cartItems} setCartItems={setCartItems} cartCount={cartCount} />
-         )}
+            <UserPage currentUser={currentUser} onClose={() => setUserView(false)} onLogout={handleLogout} cartItems={cartItems} cartCount={cartCount} wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} />
+          )}
       <ScrollToTop />
     </>
   );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../css/UserPage.css';
 
-const UserPage = ({ currentUser, onClose, onLogout, cartItems, setCartItems, cartCount }) => {
+const UserPage = ({ currentUser, onClose, onLogout, cartItems, cartCount, wishlistItems, setWishlistItems }) => {
   // Check if user is logged in, redirect if not
   if (!currentUser) {
     onClose(); // Close panel if user is not logged in
@@ -29,7 +29,7 @@ const UserPage = ({ currentUser, onClose, onLogout, cartItems, setCartItems, car
       total: 110.00,
       status: 'Processing'
     }
-]);
+  ]);
   
   return (
     <div className="user-overlay open" onClick={onClose}>
@@ -80,7 +80,7 @@ const UserPage = ({ currentUser, onClose, onLogout, cartItems, setCartItems, car
             <div className="user-section">
               <h2>Profile Information</h2>
               
-<div className="user-info">
+              <div className="user-info">
                  <div className="info-item">
                    <i className="fa-solid fa-user"></i>
                    <span>{currentUser.name}</span>
@@ -201,20 +201,37 @@ const UserPage = ({ currentUser, onClose, onLogout, cartItems, setCartItems, car
             </div>
           )}
            
-          {/* Wishlist Tab */}
-          {activeTab === 'wishlist' && (
-            <div className="user-section">
-              <h2>Your Wishlist</h2>
-              
-              <div className="user-wishlist-empty">
-                <i className="fa-solid fa-heart"></i>
-                <p>Your wishlist is empty</p>
-                <p>Save items you love for later</p>
-                <button className="user-btn-outline">Shop Now</button>
-              </div>
-            </div>
-          )}
-        </div>
+{/* Wishlist Tab */}
+           {activeTab === 'wishlist' && (
+             <div className="user-section">
+               <h2>Your Wishlist</h2>
+               
+               {wishlistItems && wishlistItems.length > 0 ? (
+                 <div className="wishlist-items">
+                   {wishlistItems.map(item => (
+                     <div key={item.id} className="wishlist-item">
+                       <img src={item.image} alt={item.name} />
+                       <div className="wishlist-item-info">
+                         <h4>{item.name}</h4>
+                         <p>${item.price.toFixed(2)}</p>
+                         <button className="user-btn-outline" onClick={() => setWishlistItems(prev => prev.filter(w => w.id !== item.id))}>
+                           Remove
+                         </button>
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+               ) : (
+                 <div className="user-wishlist-empty">
+                   <i className="fa-solid fa-heart"></i>
+                   <p>Your wishlist is empty</p>
+                   <p>Save items you love for later</p>
+                   <button className="user-btn-outline">Shop Now</button>
+                 </div>
+               )}
+             </div>
+           )}
+          </div>
       </div>
     </div>
   );

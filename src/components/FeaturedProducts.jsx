@@ -31,7 +31,7 @@ const products = [
   }
 ];
 
-export default function FeaturedProducts({ setCartItems, requireAuth }) {
+export default function FeaturedProducts({ setCartItems, requireAuth, wishlistItems, setWishlistItems }) {
   const [filter, setFilter] = useState('all');
 
   const filters = [
@@ -93,6 +93,28 @@ export default function FeaturedProducts({ setCartItems, requireAuth }) {
     setTimeout(() => toast.classList.remove('show'), 2500);
   };
 
+  const toggleWishlist = (product, btn) => {
+    setWishlistItems(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.filter(item => item.id !== product.id);
+      }
+      return [...prev, product];
+    });
+    
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    btn.classList.add('wish-btn-added');
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.classList.remove('wish-btn-added');
+    }, 1200);
+  };
+
+  const isWishlisted = (productId) => {
+    return wishlistItems && wishlistItems.some(item => item.id === productId);
+  };
+
   const isProductVisible = (occasions) => {
     return filter === 'all' || occasions.split(',').includes(filter);
   };
@@ -133,8 +155,13 @@ export default function FeaturedProducts({ setCartItems, requireAuth }) {
               <div className="product-body">
                 <h3>{product.name}</h3>
                 <p>{product.description}</p>
-                <div className="product-price">${product.price.toFixed(2)}</div>
-                 <button type="button" className="add-btn" onClick={(e) => addToCart(product, e.target)}>Add to Order</button>
+<div className="product-price">${product.price.toFixed(2)}</div>
+                <div className="product-actions">
+                  <button type="button" className="wish-btn" onClick={(e) => toggleWishlist(product, e.target)} title="Add to Wishlist">
+                    <i className={`fa-${isWishlisted(product.id) ? 'solid' : 'regular'} fa-heart`}></i>
+                  </button>
+                  <button type="button" className="add-btn" onClick={(e) => addToCart(product, e.target)}>Add to Order</button>
+                </div>
               </div>
             </div>
           ))}
